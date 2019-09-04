@@ -2893,36 +2893,22 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox27">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>asdfsad</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox27</rd:DefaultName>
-            <Top>6.93192cm</Top>
-            <Left>12.43224cm</Left>
-            <Height>0.67823cm</Height>
-            <Width>5.20878cm</Width>
+          <Image Name="Image3">
+            <Source>External</Source>
+            <Value>=Parameters!parametarBarkod.Value</Value>
+            <MIMEType>image/bmp</MIMEType>
+            <Sizing>FitProportional</Sizing>
+            <Top>6.50859cm</Top>
+            <Left>7.51099cm</Left>
+            <Height>5.86886cm</Height>
+            <Width>12.4319cm</Width>
             <ZIndex>33</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
             </Style>
-          </Textbox>
+          </Image>
         </ReportItems>
         <Height>15.04159cm</Height>
         <Style>
@@ -2949,7 +2935,8 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Constant">asdasds</Value>
+                      <Value>=iif(First(Fields!r1.Value, "DSPodaciTvrtke").ToString() ="1",First(Fields!naziv_fakture.Value, "DSPodaciTvrtke").ToString(),First(Fields!naziv_fakture.Value, "DSPodaciTvrtke").ToString().Replace(" R1",""))
++First(Fields!Naslov.Value, "DSKaktura")</Value>
                       <Style>
                         <FontStyle>=IIF(First(Fields!oib.Value, "DSPodaciTvrtke") = "73502823843" , "Normal","Italic")</FontStyle>
                         <FontSize>16pt</FontSize>
@@ -3353,36 +3340,6 @@ IIF(Parameters!dokumenat.Value = "PON", IIF(First(Fields!string4.Value, "DSKaktu
                 </Border>
               </Style>
             </Line>
-            <Textbox Name="Textbox29">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>sadgasgsasdafsda</Value>
-                      <Style />
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox29</rd:DefaultName>
-              <Top>0.89048cm</Top>
-              <Left>4.09787cm</Left>
-              <Height>0.71438cm</Height>
-              <Width>4.73301cm</Width>
-              <ZIndex>6</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
           </ReportItems>
           <Style>
             <Border>
@@ -3465,6 +3422,10 @@ IIF(Parameters!dokumenat.Value = "PON", IIF(First(Fields!string4.Value, "DSKaktu
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="vodeni">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="parametarBarkod">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
