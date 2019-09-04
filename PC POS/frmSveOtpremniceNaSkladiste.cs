@@ -307,7 +307,7 @@ ORDER BY otpremnice_na_skl.datum DESC" + remote + @";";
 
         private void btnSveFakture_Click(object sender, EventArgs e)
         {
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             rfak.dokumenat = "OTP";
             rfak.ImeForme = "Otpremnica";
             rfak.from_skladiste = dgv.CurrentRow.Cells["Skladište OD"].FormattedValue.ToString();
@@ -317,7 +317,7 @@ ORDER BY otpremnice_na_skl.datum DESC" + remote + @";";
 
         private void dgv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             rfak.dokumenat = "OTP";
             rfak.ImeForme = "Otpremnica";
             rfak.from_skladiste = dgv.CurrentRow.Cells["Skladište OD"].FormattedValue.ToString();

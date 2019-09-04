@@ -36,6 +36,7 @@ namespace PCPOS.Report.Faktura
 
         private ReportParameter p10, p17;
 
+
         private DataTable DTpostavke = classSQL.select_settings("SELECT * FROM postavke", "postavke").Tables[0];
 
         private void repFaktura_Load(object sender, EventArgs e)
@@ -139,11 +140,18 @@ where id_partner_poslovnica = {0};", id_partner_poslovnica);
             }
             else if (dokumenat == "RAC")
             {
+
                 if (broj_dokumenta == null) { return; }
 
                 imeTablica[0] = samoIspis ? "ispis_racuni" : "racuni";
                 imeTablica[1] = samoIspis ? "ispis_racun_stavke" : "racun_stavke";
 
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
+                
                 FillRacun(broj_dokumenta, imeTablica, poslovnica, naplatni);
             }
             else if (dokumenat == "PON")
@@ -160,6 +168,13 @@ where id_partner_poslovnica = {0};", id_partner_poslovnica);
             else if (dokumenat == "OTP")
             {
                 if (broj_dokumenta == null) { return; }
+
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
+
                 FillOtpremnicu(broj_dokumenta, from_skladiste);
 
                 string sql = string.Format(@"select pp.id_partner_poslovnica, pp.naziv, pp.adresa, d.zemlja, g.posta || ' ' || g.grad as grad
@@ -193,11 +208,21 @@ where id_partner_poslovnica = {0};", id_partner_poslovnica);
             else if (dokumenat == "IFB")
             {
                 if (broj_dokumenta == null) { return; }
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
                 FillIFB(broj_dokumenta);
             }
             else if (dokumenat == "RNS")
             {
                 if (broj_dokumenta == null) { return; }
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
                 FillRNS(broj_dokumenta);
             }
 
@@ -225,6 +250,11 @@ where id_partner_poslovnica = {0};", id_partner_poslovnica);
             }
             else if (dokumenat == "PON")
             {
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
                 string valut = " Select ponude.id_valuta, valute.ime_valute AS valuta FROM ponude " +
                 " LEFT JOIN valute ON valute.id_valuta=ponude.id_valuta WHERE ponude.broj_ponude='" + broj_dokumenta + "'";
                 DataTable DTvalut = classSQL.select(valut, "valute").Tables[0];
@@ -582,6 +612,11 @@ where id_partner_poslovnica = {0};", id_partner_poslovnica);
             }
 
             reportViewer1.LocalReport.DisplayName = "Racun-" + dSFaktura.Tables[0].Rows[0]["broj_racuna"].ToString() + "-" + datum_.ToString("dd-MM-yyyy") + "";
+            
+            //ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+            //this.reportViewer1.LocalReport.EnableExternalImages = true;
+            //this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+            //reportViewer1.RefreshReport();
         }
 
         private void FillFaktura(string broj, string[] imeTablica)
@@ -1249,6 +1284,7 @@ imeTablica[0], broj, poslovnica, naplatni);
 
         private void FillPonude(string broj, string[] imeTablica, string imeBrojPonude, string imeGodinaPonude)
         {
+
             PCPOS.classNumberToLetter broj_u_text = new PCPOS.classNumberToLetter();
 
             //MessageBox.Show(broj_slovima.ToLower());
@@ -1480,6 +1516,12 @@ imeTablica[0], broj, poslovnica, naplatni);
             {
                 reportViewer1.LocalReport.DisplayName = "Ponuda-" + dSFaktura.Tables[0].Rows[0]["broj_ponude"].ToString() + "-" + datum_.ToString("dd-MM-yyyy") + "";
             }
+
+
+            ReportParameter p100 = new ReportParameter("parametarBarkod", "");
+            this.reportViewer1.LocalReport.EnableExternalImages = true;
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+            reportViewer1.RefreshReport();
         }
 
         private void FillOtpremnicu(string broj, string skladiste)

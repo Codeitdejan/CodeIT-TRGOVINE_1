@@ -1131,7 +1131,7 @@ namespace PCPOS
 
         private void printaj(string broj, string skl)
         {
-            Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
             pr.dokumenat = "OTP";
             pr.broj_dokumenta = broj;
             pr.from_skladiste = skl;

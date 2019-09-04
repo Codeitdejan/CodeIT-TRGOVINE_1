@@ -117,6 +117,7 @@ namespace PCPOS.Report.Faktura
 
             if (dokumenat == "FAK")
             {
+
                 if (broj_dokumenta == null) { return; }
                 imeTablica[0] = samoIspis ? "ispis_fakture" : "fakture";
                 imeTablica[1] = samoIspis ? "ispis_faktura_stavke" : "faktura_stavke";
@@ -124,10 +125,17 @@ namespace PCPOS.Report.Faktura
             }
             else if (dokumenat == "RAC")
             {
+
                 if (broj_dokumenta == null) { return; }
 
                 imeTablica[0] = samoIspis ? "ispis_racuni" : "racuni";
                 imeTablica[1] = samoIspis ? "ispis_racun_stavke" : "racun_stavke";
+
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer2.LocalReport.EnableExternalImages = true;
+                this.reportViewer2.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer2.RefreshReport();
                 FillRacun(broj_dokumenta, imeTablica, poslovnica, naplatni);
             }
             else if (dokumenat == "PON")
@@ -139,21 +147,45 @@ namespace PCPOS.Report.Faktura
                 imeBrojRacuna = samoIspis ? "broj_fakture" : "broj_ponude";
                 imeGodinaRacuna = samoIspis ? "godina_fakture" : "godina_ponude";
 
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer2.LocalReport.EnableExternalImages = true;
+                this.reportViewer2.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer2.RefreshReport();
+
                 FillPonude(broj_dokumenta, imeTablica, imeBrojRacuna, imeGodinaRacuna);
             }
             else if (dokumenat == "OTP")
             {
                 if (broj_dokumenta == null) { return; }
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer2.LocalReport.EnableExternalImages = true;
+                this.reportViewer2.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer2.RefreshReport();
+
                 FillOtpremnicu(broj_dokumenta, from_skladiste);
             }
             else if (dokumenat == "IFB")
             {
                 if (broj_dokumenta == null) { return; }
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer2.LocalReport.EnableExternalImages = true;
+                this.reportViewer2.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer2.RefreshReport();
+
                 FillIFB(broj_dokumenta);
             }
             else if (dokumenat == "RNS")
             {
                 if (broj_dokumenta == null) { return; }
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer2.LocalReport.EnableExternalImages = true;
+                this.reportViewer2.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer2.RefreshReport();
+
                 FillRNS(broj_dokumenta);
             }
 
@@ -182,6 +214,11 @@ namespace PCPOS.Report.Faktura
             }
             else if (dokumenat == "PON")
             {
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer2.LocalReport.EnableExternalImages = true;
+                this.reportViewer2.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer2.RefreshReport();
                 string valut = " Select ponude.id_valuta, valute.ime_valute AS valuta FROM ponude " +
                 " LEFT JOIN valute ON valute.id_valuta=ponude.id_valuta WHERE ponude.broj_ponude='" + broj_dokumenta + "'";
                 DataTable DTvalut = classSQL.select(valut, "valute").Tables[0];

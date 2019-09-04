@@ -1100,7 +1100,7 @@ namespace PCPOS
             switch (n)
             {
                 case "MALOP":
-                    Report.Faktura.repFaktura rac = new Report.Faktura.repFaktura();
+                    Report.Faktura.repFaktura2 rac = new Report.Faktura.repFaktura2();
                     rac.dokumenat = "RAC";
                     rac.ImeForme = "Račun";
                     rac.broj_dokumenta = broj;
@@ -1110,7 +1110,7 @@ namespace PCPOS
                     break;
 
                 case "FAKTU":
-                    Report.Faktura.repFaktura fak = new Report.Faktura.repFaktura();
+                    Report.Faktura.repFaktura2 fak = new Report.Faktura.repFaktura2();
                     fak.dokumenat = "FAK";
                     fak.broj_dokumenta = broj;
                     fak.poslovnica = dgw.CurrentRow.Cells["Poslovnica"].FormattedValue.ToString();
@@ -1119,7 +1119,7 @@ namespace PCPOS
                     break;
 
                 case "OTPRE":
-                    Report.Faktura.repFaktura otp = new Report.Faktura.repFaktura();
+                    Report.Faktura.repFaktura2 otp = new Report.Faktura.repFaktura2();
                     otp.dokumenat = "OTP";
                     otp.broj_dokumenta = broj;
                     otp.otpr_id = true;

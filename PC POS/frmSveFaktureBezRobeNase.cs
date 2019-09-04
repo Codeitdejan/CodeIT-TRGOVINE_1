@@ -560,7 +560,7 @@ namespace PCPOS
                 tecaj = false;
             }
 
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             //Report.Faktura.repFakturaNovo rfak = new Report.Faktura.repFakturaNovo();
 
             rfak.dokumenat = "FAK";

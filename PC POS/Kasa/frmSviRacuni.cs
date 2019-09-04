@@ -278,7 +278,7 @@ ORDER BY racuni.datum_racuna DESC
         {
             if (Class.Postavke.idFaktura == 1)
             {
-                Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
                 rfak.dokumenat = "RAC";
                 rfak.ImeForme = "Račun";
                 rfak.poslovnica = dgv.CurrentRow.Cells["id_ducan"].FormattedValue.ToString();
@@ -317,7 +317,7 @@ ORDER BY racuni.datum_racuna DESC
         {
             if (Class.Postavke.idFaktura == 1)
             {
-                Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
                 rfak.dokumenat = "RAC";
                 rfak.ImeForme = "Račun";
                 rfak.poslovnica = dgv.CurrentRow.Cells["id_ducan"].FormattedValue.ToString();

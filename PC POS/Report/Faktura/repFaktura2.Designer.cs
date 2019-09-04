@@ -199,7 +199,7 @@
         private System.Windows.Forms.BindingSource dSavansiFakBindingSource;
         private System.Windows.Forms.BindingSource bindingSourcePdfCode;
         private Dataset.DataSetPdf417Code dataSetPdf417Code;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer2;
+        public Microsoft.Reporting.WinForms.ReportViewer reportViewer2;
         private System.Windows.Forms.BindingSource PDF417BindingSource;
     }
 }

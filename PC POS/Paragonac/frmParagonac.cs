@@ -1040,7 +1040,7 @@ namespace PCPOS
 
         private void printaj(string brRac)
         {
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             rfak.dokumenat = "RAC";
             rfak.ImeForme = "Račun";
             rfak.naplatni = id_kasa;
@@ -1804,7 +1804,7 @@ namespace PCPOS
 
         private void printaj(string brRac, bool testniIspis)
         {
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             rfak.dokumenat = "RAC";
             rfak.samoIspis = testniIspis;
             rfak.ImeForme = "Račun";

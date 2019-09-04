@@ -1177,7 +1177,7 @@ namespace PCPOS
         {
             if (Class.Postavke.idFaktura == 1)
             {
-                Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
                 pr.dokumenat = "OTP";
                 pr.broj_dokumenta = broj;
                 pr.from_skladiste = skl;

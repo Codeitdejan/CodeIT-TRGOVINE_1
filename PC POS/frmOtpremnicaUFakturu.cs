@@ -265,7 +265,7 @@ namespace PCPOS
 
         private void btnSveFakture_Click(object sender, EventArgs e)
         {
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             rfak.dokumenat = "OTP";
             rfak.ImeForme = "Otpremnica";
             rfak.from_skladiste = dgv.CurrentRow.Cells["Skladište"].FormattedValue.ToString();

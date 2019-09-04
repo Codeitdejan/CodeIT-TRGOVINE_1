@@ -448,7 +448,7 @@ ORDER BY ponude.date DESC" + remote;
             }
             else
             {
-                Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
                 rfak.dokumenat = "PON";
                 rfak.racunajTecaj = tecaj;
                 rfak.ImeForme = "Ponude";

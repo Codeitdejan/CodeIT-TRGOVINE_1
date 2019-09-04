@@ -1677,7 +1677,7 @@ namespace PCPOS
                 }
                 else
                 {
-                    Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+                    Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
                     pr.dokumenat = "PON";
                     //pr.racunajTecaj = ValutaKuna(cbValuta.Text);
                     pr.broj_dokumenta = broj;
@@ -1688,7 +1688,7 @@ namespace PCPOS
             }
             else
             {
-                Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
                 pr.dokumenat = "PON";
                 //pr.racunajTecaj = ValutaKuna(cbValuta.Text);
                 pr.broj_dokumenta = broj;
@@ -2539,7 +2539,7 @@ namespace PCPOS
             //    provjera_sql(classSQL.insert(sql_stavke));
             //}
 
-            Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
             pr.samoIspis = true;
             //pr.racunajTecaj = ValutaKuna(cbValuta.Text);
             pr.dokumenat = "PON";

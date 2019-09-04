@@ -1280,7 +1280,7 @@ namespace PCPOS
 
         private void printaj(string broj)
         {
-            Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
             pr.dokumenat = "RNS";
             pr.broj_dokumenta = broj;
             pr.ImeForme = "Radni nalog servis";
