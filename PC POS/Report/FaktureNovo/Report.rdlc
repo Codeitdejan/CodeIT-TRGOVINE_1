@@ -1700,8 +1700,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>11.66369cm</Top>
-                <Left>0.35573cm</Left>
+                <Top>13.04833cm</Top>
+                <Left>0.40653cm</Left>
                 <Height>0.46771cm</Height>
                 <Width>6.09555cm</Width>
                 <ZIndex>8</ZIndex>
@@ -1728,8 +1728,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>11.66369cm</Top>
-                <Left>6.62767cm</Left>
+                <Top>13.04833cm</Top>
+                <Left>6.67847cm</Left>
                 <Height>0.46771cm</Height>
                 <Width>6.09833cm</Width>
                 <ZIndex>9</ZIndex>
@@ -1760,8 +1760,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>11.66369cm</Top>
-                <Left>12.9024cm</Left>
+                <Top>13.04833cm</Top>
+                <Left>12.9532cm</Left>
                 <Height>0.46771cm</Height>
                 <Width>7.35333cm</Width>
                 <ZIndex>10</ZIndex>
@@ -1772,8 +1772,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                 </Style>
               </Textbox>
               <Line Name="Line2">
-                <Top>11.5923cm</Top>
-                <Left>0.35573cm</Left>
+                <Top>12.97694cm</Top>
+                <Left>0.40653cm</Left>
                 <Height>0cm</Height>
                 <Width>19.89154cm</Width>
                 <ZIndex>11</ZIndex>
@@ -1784,8 +1784,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                 </Style>
               </Line>
               <Line Name="Line1">
-                <Top>12.23667cm</Top>
-                <Left>0.35573cm</Left>
+                <Top>13.62131cm</Top>
+                <Left>0.40653cm</Left>
                 <Height>0cm</Height>
                 <Width>19.89154cm</Width>
                 <ZIndex>12</ZIndex>
@@ -3438,10 +3438,25 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   <VerticalAlign>Bottom</VerticalAlign>
                 </Style>
               </Textbox>
+              <Image Name="Image2">
+                <Source>External</Source>
+                <Value>=Parameters!parametarBarkod.Value</Value>
+                <Sizing>FitProportional</Sizing>
+                <Top>1.94433cm</Top>
+                <Left>0.00891cm</Left>
+                <Height>4.63447cm</Height>
+                <Width>11.59989cm</Width>
+                <ZIndex>39</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Image>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>10.93424cm</Top>
-            <Height>12.27195cm</Height>
+            <Height>13.7977cm</Height>
             <Width>20.9907cm</Width>
             <ZIndex>9</ZIndex>
             <Style>
@@ -3451,7 +3466,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>23.24146cm</Height>
+        <Height>24.73194cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3616,6 +3631,10 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="parametarBarkod">
+      <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
