@@ -277,3 +277,12 @@ C:\Users\Toni\Desktop\POSTrgovineFinal2v2\PC POS Update\obj\x86\Debug\PC POS Upd
 C:\Users\Toni\Desktop\POSTrgovineFinal2v2\PC POS Update\obj\x86\Debug\PC POS Update.csproj.CoreCompileInputs.cache
 C:\Users\Toni\Desktop\POSTrgovineFinal2v2\PC POS Update\obj\x86\Debug\PC POS Update.exe
 C:\Users\Toni\Desktop\POSTrgovineFinal2v2\PC POS Update\obj\x86\Debug\PC POS Update.pdb
+F:\work\CodeIT\CodeiT - Trgovine\PC POS Update\bin\Debug\PC POS Update.exe
+F:\work\CodeIT\CodeiT - Trgovine\PC POS Update\bin\Debug\PC POS Update.pdb
+F:\work\CodeIT\CodeiT - Trgovine\PC POS Update\obj\x86\Debug\PC POS Update.csprojAssemblyReference.cache
+F:\work\CodeIT\CodeiT - Trgovine\PC POS Update\obj\x86\Debug\PC_POS_Update.frmUpdate.resources
+F:\work\CodeIT\CodeiT - Trgovine\PC POS Update\obj\x86\Debug\PC_POS_Update.Properties.Resources.resources
+F:\work\CodeIT\CodeiT - Trgovine\PC POS Update\obj\x86\Debug\PC POS Update.csproj.GenerateResource.cache
+F:\work\CodeIT\CodeiT - Trgovine\PC POS Update\obj\x86\Debug\PC POS Update.csproj.CoreCompileInputs.cache
+F:\work\CodeIT\CodeiT - Trgovine\PC POS Update\obj\x86\Debug\PC POS Update.exe
+F:\work\CodeIT\CodeiT - Trgovine\PC POS Update\obj\x86\Debug\PC POS Update.pdb
