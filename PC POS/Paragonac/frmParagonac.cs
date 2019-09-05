@@ -1081,9 +1081,11 @@ namespace PCPOS
 
                 if (DT.Rows.Count > 0)
                 {
-                    int sifra;
+                    int sifra = 1;
                     vrati = DT.Rows[0][0].ToString();
+                    if(vrati != "")
                     sifra = int.Parse(vrati) + 1;
+
                     vrati = "!serial" + sifra;
 
                     sql = "INSERT INTO roba (naziv,id_grupa,jm,vpc,mpc,id_zemlja_porijekla,id_zemlja_uvoza,id_partner,id_manufacturers,sifra,ean,porez,oduzmi,nc,opis,jamstvo,akcija,link_za_slike,id_podgrupa) " +
