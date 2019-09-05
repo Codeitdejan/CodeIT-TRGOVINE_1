@@ -1422,7 +1422,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox14</rd:DefaultName>
-                <Top>7.66727cm</Top>
+                <Top>10.20727cm</Top>
                 <Left>0.52534cm</Left>
                 <Height>0.4cm</Height>
                 <Width>9.763cm</Width>
@@ -1455,8 +1455,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
-                <Top>5.11421cm</Top>
-                <Left>10.73567cm</Left>
+                <Top>7.46699cm</Top>
+                <Left>10.61164cm</Left>
                 <Height>0.4cm</Height>
                 <Width>9.77144cm</Width>
                 <ZIndex>1</ZIndex>
@@ -1490,8 +1490,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
-                <Top>5.61417cm</Top>
-                <Left>10.73567cm</Left>
+                <Top>7.96695cm</Top>
+                <Left>10.61164cm</Left>
                 <Height>0.4cm</Height>
                 <Width>9.77144cm</Width>
                 <ZIndex>2</ZIndex>
@@ -1525,8 +1525,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
-                <Top>6.11412cm</Top>
-                <Left>10.73567cm</Left>
+                <Top>8.4669cm</Top>
+                <Left>10.61164cm</Left>
                 <Height>0.4cm</Height>
                 <Width>9.77144cm</Width>
                 <ZIndex>3</ZIndex>
@@ -1563,8 +1563,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
-                <Top>6.61408cm</Top>
-                <Left>10.73567cm</Left>
+                <Top>8.96686cm</Top>
+                <Left>10.61164cm</Left>
                 <Height>0.4cm</Height>
                 <Width>9.77144cm</Width>
                 <ZIndex>4</ZIndex>
@@ -1597,7 +1597,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox15</rd:DefaultName>
-                <Top>8.8367cm</Top>
+                <Top>11.3767cm</Top>
                 <Left>0.52534cm</Left>
                 <Height>0.4cm</Height>
                 <Width>19.90846cm</Width>
@@ -1631,7 +1631,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox14</rd:DefaultName>
-                <Top>8.17193cm</Top>
+                <Top>10.71193cm</Top>
                 <Left>0.52534cm</Left>
                 <Height>0.55894cm</Height>
                 <Width>9.763cm</Width>
@@ -1662,7 +1662,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>7.66727cm</Top>
+                <Top>10.20727cm</Top>
                 <Left>10.67079cm</Left>
                 <Height>0.45889cm</Height>
                 <Width>9.763cm</Width>
@@ -1700,7 +1700,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>13.04833cm</Top>
+                <Top>14.00083cm</Top>
                 <Left>0.40653cm</Left>
                 <Height>0.46771cm</Height>
                 <Width>6.09555cm</Width>
@@ -1728,7 +1728,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
-                <Top>13.04833cm</Top>
+                <Top>14.00083cm</Top>
                 <Left>6.67847cm</Left>
                 <Height>0.46771cm</Height>
                 <Width>6.09833cm</Width>
@@ -1760,7 +1760,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>13.04833cm</Top>
+                <Top>14.00083cm</Top>
                 <Left>12.9532cm</Left>
                 <Height>0.46771cm</Height>
                 <Width>7.35333cm</Width>
@@ -1772,7 +1772,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                 </Style>
               </Textbox>
               <Line Name="Line2">
-                <Top>12.97694cm</Top>
+                <Top>13.92944cm</Top>
                 <Left>0.40653cm</Left>
                 <Height>0cm</Height>
                 <Width>19.89154cm</Width>
@@ -1784,7 +1784,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                 </Style>
               </Line>
               <Line Name="Line1">
-                <Top>13.62131cm</Top>
+                <Top>14.57381cm</Top>
                 <Left>0.40653cm</Left>
                 <Height>0cm</Height>
                 <Width>19.89154cm</Width>
@@ -1815,7 +1815,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox75</rd:DefaultName>
-                <Top>10.78892cm</Top>
+                <Top>13.32892cm</Top>
                 <Left>0.52534cm</Left>
                 <Height>0.4cm</Height>
                 <Width>19.85774cm</Width>
@@ -2004,8 +2004,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox5</rd:DefaultName>
-                <Top>2.60267cm</Top>
-                <Left>12.00974cm</Left>
+                <Top>4.92017cm</Top>
+                <Left>11.87397cm</Left>
                 <Height>0.4cm</Height>
                 <Width>8.43256cm</Width>
                 <ZIndex>19</ZIndex>
@@ -2109,8 +2109,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
-                <Top>4.10255cm</Top>
-                <Left>12.00127cm</Left>
+                <Top>6.42005cm</Top>
+                <Left>11.8655cm</Left>
                 <Height>0.4cm</Height>
                 <Width>8.44103cm</Width>
                 <ZIndex>22</ZIndex>
@@ -2148,8 +2148,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
-                <Top>4.60838cm</Top>
-                <Left>12.00127cm</Left>
+                <Top>6.92588cm</Top>
+                <Left>11.8655cm</Left>
                 <Height>0.4cm</Height>
                 <Width>8.44103cm</Width>
                 <ZIndex>23</ZIndex>
@@ -2184,8 +2184,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
-                <Top>3.61434cm</Top>
-                <Left>11.99281cm</Left>
+                <Top>5.93184cm</Top>
+                <Left>11.85704cm</Left>
                 <Height>0.4cm</Height>
                 <Width>8.44949cm</Width>
                 <ZIndex>24</ZIndex>
@@ -2223,8 +2223,8 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
-                <Top>3.14378cm</Top>
-                <Left>11.99281cm</Left>
+                <Top>5.46128cm</Top>
+                <Left>11.85704cm</Left>
                 <Height>0.4cm</Height>
                 <Width>8.44949cm</Width>
                 <ZIndex>25</ZIndex>
@@ -2809,7 +2809,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox13</rd:DefaultName>
-                <Top>7.1438cm</Top>
+                <Top>9.6838cm</Top>
                 <Left>0.56481cm</Left>
                 <Height>0.34708cm</Height>
                 <Width>19.9cm</Width>
@@ -3389,7 +3389,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>9.97753cm</Top>
+                <Top>12.51753cm</Top>
                 <Left>0.52534cm</Left>
                 <Height>0.6cm</Height>
                 <Width>9.763cm</Width>
@@ -3423,7 +3423,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox15</rd:DefaultName>
-                <Top>9.37781cm</Top>
+                <Top>11.91781cm</Top>
                 <Left>0.52533cm</Left>
                 <Height>0.4cm</Height>
                 <Width>19.90846cm</Width>
@@ -3442,10 +3442,10 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
                 <Source>External</Source>
                 <Value>=Parameters!parametarBarkod.Value</Value>
                 <Sizing>FitProportional</Sizing>
-                <Top>1.94433cm</Top>
-                <Left>0.00891cm</Left>
-                <Height>4.63447cm</Height>
-                <Width>11.59989cm</Width>
+                <Top>2.67377cm</Top>
+                <Left>11.84155cm</Left>
+                <Height>2.07001cm</Height>
+                <Width>8.54153cm</Width>
                 <ZIndex>39</ZIndex>
                 <Style>
                   <Border>
@@ -3456,7 +3456,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>10.93424cm</Top>
-            <Height>13.7977cm</Height>
+            <Height>14.8384cm</Height>
             <Width>20.9907cm</Width>
             <ZIndex>9</ZIndex>
             <Style>
@@ -3466,7 +3466,7 @@ IIf(Parameters!ppDrzava.Value="","","Država: " &amp; Parameters!ppDrzava.Value)
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>24.73194cm</Height>
+        <Height>25.80791cm</Height>
         <Style>
           <Border>
             <Style>None</Style>

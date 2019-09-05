@@ -1143,32 +1143,6 @@ where {0}.broj_fakture = '{1}' AND {0}.id_ducan = '{2}' AND {0}.id_kasa = '{3}';
             barCodeString += "PADD" + "\n";
             barCodeString += DodajRedak("Uplata", 35);
 
-            //Napravi data table
-            /*DataTable dt = new DataTable();
-            dt.Columns.Add("image", typeof(byte[]));
-            if (SviPodaciPostoje(barCodeString))
-            {
-                //Napravi bitmapu
-                
-                dt.Rows.Add(slikaUBytes);
-            }
-
-
-            //Napuni data set dataSetPDF417Code s data tableom dt
-            dataSetPdf417Code.Tables.Add(dt); // Tables[1]
-            dataSetPdf417Code.Tables[1].TableName = "tablica1";
-            bindingSourcePdfCode.DataMember = "tablica1";
-
-
-            //Opcenita shema za reportDataSource
-            ReportDataSource dsPDF417Kod = new ReportDataSource();
-            dsPDF417Kod.Name = "DataSetPdfCode";
-            dsPDF417Kod.Value = dataSetPdf417Code.Tables[1];
-            reportViewer2.LocalReport.DataSources.Add(dsPDF417Kod);
-
-            //reportViewer2.LocalReport.ReportEmbeddedResource = "PCPOS.Report.Faktura.Report.rdlc";
-            reportViewer2.LocalReport.EnableExternalImages = true;
-            reportViewer2.RefreshReport();*/
             Bitmap bitmap = (Bitmap)(new ImageConverter()).ConvertFrom(GenerateBarCodeZXing(barCodeString));
             bitmap.Save("barkod.png");
             System.Threading.Thread.Sleep(100);
