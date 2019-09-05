@@ -237,7 +237,7 @@ namespace PCPOS.Report.IFB
                 " partners.ime_tvrtke AS kupac_tvrtka," +
                 " 'Datum isporuke:' AS naziv_date1," +
                 " 'Datum dospijeća:' AS naziv_date2," +
-                " 'OVO NIJE FISKALIZIRAN RAČUN' AS string3," +
+                " '' AS string3," +
                 " partners.adresa AS kupac_adresa," +
                 " partners.id_grad AS id_kupac_grad," +
                 " partners.id_partner AS sifra_kupac," +

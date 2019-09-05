@@ -2575,8 +2575,13 @@ namespace PCPOS
         private void label9_Click(object sender, EventArgs e)
         {
             string vrati;
+<<<<<<< HEAD
             int sifra = 1;
             string sql = "select max(cast(substring(sifra, 8, 50) as int)) from roba where sifra LIKE '!serial%'";
+=======
+            int sifra;
+            string sql = "select max(cast(sifra as int)) from roba";
+>>>>>>> 9c4073c672ca08c0f8d1efa2c2160fb3715151cd
 
             DataTable DT = classSQL.select(sql, "roba").Tables[0];
             preuzetoSWeba = false;
@@ -2585,7 +2590,7 @@ namespace PCPOS
                 vrati = DT.Rows[0][0].ToString();
                 if(vrati != "")
                 sifra = int.Parse(vrati) + 1;
-                vrati = "!serial" + sifra;
+                vrati = sifra.ToString();
                 dgw.Rows.Add("", vrati, "", prvo_skladiste, "kom", "0", "25", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "NE", "0");
             }
             else

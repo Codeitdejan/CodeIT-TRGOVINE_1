@@ -1143,32 +1143,6 @@ where {0}.broj_fakture = '{1}' AND {0}.id_ducan = '{2}' AND {0}.id_kasa = '{3}';
             barCodeString += "PADD" + "\n";
             barCodeString += DodajRedak("Uplata", 35);
 
-            //Napravi data table
-            /*DataTable dt = new DataTable();
-            dt.Columns.Add("image", typeof(byte[]));
-            if (SviPodaciPostoje(barCodeString))
-            {
-                //Napravi bitmapu
-                
-                dt.Rows.Add(slikaUBytes);
-            }
-
-
-            //Napuni data set dataSetPDF417Code s data tableom dt
-            dataSetPdf417Code.Tables.Add(dt); // Tables[1]
-            dataSetPdf417Code.Tables[1].TableName = "tablica1";
-            bindingSourcePdfCode.DataMember = "tablica1";
-
-
-            //Opcenita shema za reportDataSource
-            ReportDataSource dsPDF417Kod = new ReportDataSource();
-            dsPDF417Kod.Name = "DataSetPdfCode";
-            dsPDF417Kod.Value = dataSetPdf417Code.Tables[1];
-            reportViewer2.LocalReport.DataSources.Add(dsPDF417Kod);
-
-            //reportViewer2.LocalReport.ReportEmbeddedResource = "PCPOS.Report.Faktura.Report.rdlc";
-            reportViewer2.LocalReport.EnableExternalImages = true;
-            reportViewer2.RefreshReport();*/
             Bitmap bitmap = (Bitmap)(new ImageConverter()).ConvertFrom(GenerateBarCodeZXing(barCodeString));
             bitmap.Save("barkod.png");
             System.Threading.Thread.Sleep(100);
@@ -1393,7 +1367,7 @@ where {0}.broj_fakture = '{1}' AND {0}.id_ducan = '{2}' AND {0}.id_kasa = '{3}';
                 " partners.id_grad AS id_kupac_grad," +
                 " partners.id_partner AS sifra_kupac," +
                 " partners.napomena AS napomena_tvrtka," +
-                " 'OVO NIJE FISKALIZIRAN RAČUN' AS string3," +
+                " '' AS string3," +
                 " partners.oib_polje AS string5, " +
                 " case when partners.tel is null then '' else partners.tel end AS string4, " +
                 " zemlja.zemlja AS kupac_drzava, " +
@@ -1615,7 +1589,7 @@ where {0}.broj_fakture = '{1}' AND {0}.id_ducan = '{2}' AND {0}.id_kasa = '{3}';
                 " ziro_racun.banka AS banka," +
                 " '" + broj_slovima + "' AS broj_slovima," +
                 " partners.oib AS kupac_oib," +
-                " 'OVO NIJE FISKALIZIRAN RAČUN' AS string3," +
+                " '' AS string3," +
                 " otpremnice.use_nbc AS string4 " +
                 " FROM otpremnice" +
                 " LEFT JOIN zacrnjeni_partner as partners ON partners.id_partner=otpremnice.osoba_partner" +
@@ -1972,7 +1946,7 @@ where {0}.broj_fakture = '{1}' AND {0}.id_ducan = '{2}' AND {0}.id_kasa = '{3}';
                 " partners.id_partner AS sifra_kupac," +
                 " partners.napomena AS napomena_tvrtka," +
                 " 'RNS' AS string1," +
-                " 'OVO NIJE FISKALIZIRAN RAČUN' AS string3," +
+                " '' AS string3," +
                 " partners.oib_polje AS string5, '' as string4, " +
                 " zemlja.zemlja AS kupac_drzava, " +
                 " ziro_racun.ziroracun AS zr," +
