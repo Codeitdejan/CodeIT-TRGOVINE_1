@@ -175,7 +175,7 @@ namespace PCPOS.Kasa
 
         private void printaj(string brRac)
         {
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             rfak.dokumenat = "RAC";
             rfak.ImeForme = "Račun";
             rfak.poslovnica = id_ducan;

@@ -494,7 +494,7 @@ namespace PCPOS.Kartoteka
             if (brra != 0)
             {
                 string broj_ra = brra.ToString();
-                Report.Faktura.repFaktura pogledajrac = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 pogledajrac = new Report.Faktura.repFaktura2();
                 pogledajrac.dokumenat = "RAC";
                 pogledajrac.broj_dokumenta = broj_ra;
                 pogledajrac.ShowDialog();

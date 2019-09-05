@@ -2480,7 +2480,7 @@ where b.id_stavka = a.id_stavka;";
 
             if (Class.Postavke.idFaktura == 1)
             {
-                Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
 
                 rfak.dokumenat = "FAK";
                 rfak.racunajTecaj = ValutaKuna(cbValuta.Text);
@@ -3920,7 +3920,7 @@ where b.id_stavka = a.id_stavka;";
 
             if (Class.Postavke.idFaktura == 1)
             {
-                Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
                 rfak.samoIspis = true;
                 rfak.dokumenat = "FAK";
                 rfak.racunajTecaj = ValutaKuna(cbValuta.Text);
@@ -4045,7 +4045,7 @@ where b.id_stavka = a.id_stavka;";
                 return;
             }
 
-            Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
 
             Dataset.DSRfakturaStavke dSRfakturaStavke = pr.dSRfakturaStavke;
             dSRfakturaStavke.Tables.Clear();
@@ -4302,12 +4302,12 @@ where b.id_stavka = a.id_stavka;";
 
             ReportDataSource source1 = new ReportDataSource("DTRpodaciTvrtke", dSRpodaciTvrtke.Tables[0]);
             ReportDataSource source2 = new ReportDataSource("DTfakturaStavke", dSRfakturaStavke.Tables[0]);
-            pr.reportViewer1.LocalReport.DataSources.Clear();
-            pr.reportViewer1.LocalReport.DataSources.Add(source);
-            pr.reportViewer1.LocalReport.DataSources.Add(source1);
-            pr.reportViewer1.LocalReport.DataSources.Add(source2);
+            pr.reportViewer2.LocalReport.DataSources.Clear();
+            pr.reportViewer2.LocalReport.DataSources.Add(source);
+            pr.reportViewer2.LocalReport.DataSources.Add(source1);
+            pr.reportViewer2.LocalReport.DataSources.Add(source2);
 
-            pr.reportViewer1.LocalReport.Refresh();
+            pr.reportViewer2.LocalReport.Refresh();
 
             pr.samoIspis = true;
             pr.dokumenat = "FAK";

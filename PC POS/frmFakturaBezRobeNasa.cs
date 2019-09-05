@@ -2140,7 +2140,7 @@ namespace PCPOS
 
         private void printaj(string broj)
         {
-            Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
             pr.dokumenat = "FAK";
             pr.racunajTecaj = ValutaKuna(cbValuta.Text);
             pr.broj_dokumenta = broj;
@@ -3382,7 +3382,7 @@ namespace PCPOS
                 provjera_sql(classSQL.insert(sql));
             }
 
-            Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
             pr.samoIspis = true;
             pr.racunajTecaj = ValutaKuna(cbValuta.Text);
             pr.dokumenat = "FAK";
@@ -3425,7 +3425,7 @@ namespace PCPOS
                 return;
             }
 
-            Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
 
             Dataset.DSRfakturaStavke dSRfakturaStavke = pr.dSRfakturaStavke;
             dSRfakturaStavke.Tables.Clear();
@@ -3682,12 +3682,12 @@ namespace PCPOS
 
             ReportDataSource source1 = new ReportDataSource("DTRpodaciTvrtke", dSRpodaciTvrtke.Tables[0]);
             ReportDataSource source2 = new ReportDataSource("DTfakturaStavke", dSRfakturaStavke.Tables[0]);
-            pr.reportViewer1.LocalReport.DataSources.Clear();
-            pr.reportViewer1.LocalReport.DataSources.Add(source);
-            pr.reportViewer1.LocalReport.DataSources.Add(source1);
-            pr.reportViewer1.LocalReport.DataSources.Add(source2);
+            pr.reportViewer2.LocalReport.DataSources.Clear();
+            pr.reportViewer2.LocalReport.DataSources.Add(source);
+            pr.reportViewer2.LocalReport.DataSources.Add(source1);
+            pr.reportViewer2.LocalReport.DataSources.Add(source2);
 
-            pr.reportViewer1.LocalReport.Refresh();
+            pr.reportViewer2.LocalReport.Refresh();
 
             pr.samoIspis = true;
             pr.dokumenat = "FAK";

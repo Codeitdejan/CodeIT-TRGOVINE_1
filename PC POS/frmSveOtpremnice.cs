@@ -307,7 +307,7 @@ namespace PCPOS
         {
             if (Class.Postavke.idFaktura == 1)
             {
-                Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
                 rfak.dokumenat = "OTP";
                 rfak.ImeForme = "Otpremnica";
                 rfak.from_skladiste = dgv.CurrentRow.Cells["Skladište"].FormattedValue.ToString();
@@ -336,7 +336,7 @@ namespace PCPOS
 
         private void dgv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             rfak.dokumenat = "OTP";
             rfak.from_skladiste = dgv.CurrentRow.Cells["Skladište"].FormattedValue.ToString();
             rfak.ImeForme = "Otpremnica";

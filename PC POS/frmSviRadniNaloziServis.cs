@@ -309,7 +309,7 @@ namespace PCPOS
 
         private void btnSveFakture_Click(object sender, EventArgs e)
         {
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             rfak.dokumenat = "RNS";
             rfak.ImeForme = "Radni nalog servis";
             rfak.broj_dokumenta = dgv.CurrentRow.Cells["Broj"].FormattedValue.ToString();
@@ -325,7 +325,7 @@ namespace PCPOS
 
         private void dgv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
             rfak.dokumenat = "RNS";
             rfak.ImeForme = "Radni nalog servis";
             rfak.broj_dokumenta = dgv.CurrentRow.Cells["Broj"].FormattedValue.ToString();

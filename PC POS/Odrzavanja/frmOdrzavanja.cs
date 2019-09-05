@@ -336,7 +336,7 @@ namespace PCPOS.Odrzavanja
                 {
                     for (int i = 0; i < brojevi_fak.Count; i++)
                     {
-                        Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+                        Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
                         rfak.dokumenat = "FAK";
                         rfak.racunajTecaj = false;
                         rfak.ImeForme = "Fakture";

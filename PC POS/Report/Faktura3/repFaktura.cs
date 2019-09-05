@@ -2,9 +2,12 @@
 using System;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using ZXing;
+using ZXing.Common;
 
 namespace PCPOS.Report.Faktura3
 {
@@ -117,6 +120,11 @@ namespace PCPOS.Report.Faktura3
 
                 imeTablica[0] = samoIspis ? "ispis_racuni" : "racuni";
                 imeTablica[1] = samoIspis ? "ispis_racun_stavke" : "racun_stavke";
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
                 FillRacun(broj_dokumenta, imeTablica, poslovnica, naplatni);
             }
             else if (dokumenat == "PON")
@@ -128,21 +136,44 @@ namespace PCPOS.Report.Faktura3
                 imeBrojRacuna = samoIspis ? "broj_fakture" : "broj_ponude";
                 imeGodinaRacuna = samoIspis ? "godina_fakture" : "godina_ponude";
 
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
+                FillRacun(broj_dokumenta, imeTablica, poslovnica, naplatni);
                 FillPonude(broj_dokumenta, imeTablica, imeBrojRacuna, imeGodinaRacuna);
             }
             else if (dokumenat == "OTP")
             {
                 if (broj_dokumenta == null) { return; }
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
+                FillRacun(broj_dokumenta, imeTablica, poslovnica, naplatni);
                 FillOtpremnicu(broj_dokumenta, from_skladiste);
             }
             else if (dokumenat == "IFB")
             {
                 if (broj_dokumenta == null) { return; }
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
+                FillRacun(broj_dokumenta, imeTablica, poslovnica, naplatni);
                 FillIFB(broj_dokumenta);
             }
             else if (dokumenat == "RNS")
             {
                 if (broj_dokumenta == null) { return; }
+
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
+                FillRacun(broj_dokumenta, imeTablica, poslovnica, naplatni);
                 FillRNS(broj_dokumenta);
             }
 
@@ -171,6 +202,10 @@ namespace PCPOS.Report.Faktura3
             }
             else if (dokumenat == "PON")
             {
+                ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
+                this.reportViewer1.LocalReport.EnableExternalImages = true;
+                this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+                reportViewer1.RefreshReport();
                 string valut = " Select ponude.id_valuta, valute.ime_valute AS valuta FROM ponude " +
                 " LEFT JOIN valute ON valute.id_valuta=ponude.id_valuta WHERE ponude.broj_ponude='" + broj_dokumenta + "'";
                 DataTable DTvalut = classSQL.select(valut, "valute").Tables[0];
@@ -1078,7 +1113,111 @@ where {0}.broj_fakture = '{1}' AND {0}.id_ducan = '{2}' AND {0}.id_kasa = '{3}';
             ReportParameter p7 = new ReportParameter("iznos_valuta_kn", u_kunama);
             this.reportViewer1.LocalReport.EnableExternalImages = true;
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p7 });
+            //----------------------------------------------------BarCode------------------------------------------
+            string barCodeString = DodajRedak("HRVHUB30", 8) + "\n";
+            barCodeString += DodajRedak("HRK", 3) + "\n";
+            barCodeString += DodajRedak(BarCodeIznos(Double.Parse(dSFaktura.DTRfaktura.Rows[0]["ukupno"].ToString()).ToString("#0.00")), 15) + "\n";
+            barCodeString += DodajRedak(dSFaktura.DTRfaktura.Rows[0]["kupac_tvrtka"].ToString(), 30) + "\n";
+            barCodeString += DodajRedak(dSFaktura.DTRfaktura.Rows[0]["kupac_adresa"].ToString(), 27) + "\n";
+            barCodeString += DodajRedak(dSFaktura.DTRfaktura.Rows[0]["kupac_grad"].ToString(), 27) + "\n";
+            barCodeString += DodajRedak(dSRpodaciTvrtke.DTRpodaciTvrtke.Rows[0]["ime_tvrtke"].ToString(), 25) + "\n";
+            barCodeString += DodajRedak(dSRpodaciTvrtke.DTRpodaciTvrtke.Rows[0]["adresa"].ToString(), 25) + "\n";
+            barCodeString += DodajRedak(dSRpodaciTvrtke.DTRpodaciTvrtke.Rows[0]["grad"].ToString(), 27) + "\n";
+            barCodeString += DodajRedak(dSRpodaciTvrtke.DTRpodaciTvrtke.Rows[0]["iban"].ToString(), 21) + "\n";
+            barCodeString += "HR00" + "\n";
+            barCodeString += DodajRedak(dSFaktura.DTRfaktura.Rows[0]["model"].ToString().Trim(), 22) + "\n";
+            barCodeString += "PADD" + "\n";
+            barCodeString += DodajRedak("Uplata", 35);
+
+            Bitmap bitmap = (Bitmap)(new ImageConverter()).ConvertFrom(GenerateBarCodeZXing(barCodeString));
+            bitmap.Save("barkod.png");
+            System.Threading.Thread.Sleep(100);
+            string imageUrl = AppDomain.CurrentDomain.BaseDirectory + "barkod.png";
+            ReportParameter p100 = new ReportParameter("parametarBarkod", new Uri(imageUrl).AbsoluteUri);
+            this.reportViewer1.LocalReport.EnableExternalImages = true;
+            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p100 });
+            reportViewer1.RefreshReport();
         }
+
+        //Metoda za generiranje PDF417 codea.
+        private byte[] GenerateBarCodeZXing(string data)
+        {
+            var writer = new BarcodeWriter
+            {
+                Format = BarcodeFormat.PDF_417,
+                Options = new EncodingOptions { Width = 200, Height = 50 } //optional
+            };
+            var imgBitmap = writer.Write(data);
+            using (var stream = new MemoryStream())
+            {
+                imgBitmap.Save(stream, ImageFormat.Png);
+                return stream.ToArray();
+            }
+        }
+
+        //Iznos mora biti u skladu s propisima 
+        //Puni se s desna na lijevo, ima 15 znakova, lijevo se nadopunjuju 0
+        private string BarCodeIznos(string iznos)
+        {
+            string iznosPremaPropisu = ""; // Ovo je varijabla koja će u konačnici imati oblik kakav treba biti kod skeniranja
+            string praviIznos = iznos;
+            int kolikoZnakovaNisuNule = PrebrojiOnoStoNijeNulaIliZarez(praviIznos); //Maknemo , i . iz pravog iznosa
+            int kolikoNula = 15 - kolikoZnakovaNisuNule;
+            //U string upisujemo 15-kolikoZnakovaNisuNule nula.
+            for (int i = 0; i < kolikoNula; i++)
+                iznosPremaPropisu += "0";
+            //U string upisujemo iznos bez točke i zareza -> TAKO JE PROPISANO ZAKONOM da mora biti kod skeniranja
+            for (int i = 0; i < praviIznos.Length; i++)
+            {
+                if (praviIznos[i] != ',' && praviIznos[i] != '.')
+                    iznosPremaPropisu += praviIznos[i];
+            }
+            return iznosPremaPropisu;
+        }
+
+        private int PrebrojiOnoStoNijeNulaIliZarez(string iznos)
+        {
+            int brojZnakova = 0;
+            for (int i = 0; i < iznos.Length; i++)
+            {
+                if (iznos[i] != '.' && iznos[i] != ',')
+                    brojZnakova++;
+            }
+            return brojZnakova;
+        }
+
+        //Svaki zapis ima određenu duljinu polja.
+        //Prema zapisniku, STRIKTNO se treba poštivati duljina polja, inače se PDF417 uopće ne želi skenirati u bankovnim aplikacijama.
+        //Prvi argument je zapis koji se treba dodati, a drugi argument je maximalna duljina određena zapisnikom.
+        //Ako je duljina zapisa veća od maximalne dopuštene duljine, smanjujemo duljinu zapisa na maximalnu duljinu.
+        string DodajRedak(string zapis, int maximalnaDuljina)
+        {
+            string zapisZaDodati = zapis;
+            if (zapisZaDodati.Length > maximalnaDuljina)
+                zapisZaDodati = zapisZaDodati.Substring(0, maximalnaDuljina);
+            return zapisZaDodati;
+        }
+
+        //Ako neki od podataka za bar kod u postavkama ne postoji,
+        //tada se bar kod ne ispisuje.
+        private bool SviPodaciPostoje(string barCodeString)
+        {
+            bool podaciPostoje = true;
+            string[] redovi = barCodeString.Split('\n');
+            string[] imenaRedova = {"-","-","Iznos","Ime i prezime platitelja","Ulica i broj platitelja","Poštanski broj i mjesto platitelja","Naziv primatelja",
+                            "Ulica i broj primatelja","Poštanski broj i mjesto primatelja","IBAN primatelja","Model računa primatelja",
+                            "Poziv na broj primatelja","Šifra namjene","Opis plaćanja" };
+            for (int i = 0; i < redovi.Length && podaciPostoje; i++)
+            {
+                if (redovi[i].Trim() == "-")
+                {
+                    MessageBox.Show("Barkod neće biti generiran jer nedostaje podatak o: " + imenaRedova[i] + ".", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    podaciPostoje = false;
+                }
+            }
+            return podaciPostoje;
+        }
+        //-----------------------------------------------------------------------------------------------------------//
 
         private void FillPonude(string broj, string[] imeTablica, string imeBrojPonude, string imeGodinaPonude)
         {

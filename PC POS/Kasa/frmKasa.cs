@@ -1534,7 +1534,7 @@ and rp.id_skladiste = '{1}';", sifra, Properties.Settings.Default.idSkladiste);
         {
             if (Class.Postavke.idFaktura == 1)
             {
-                Report.Faktura.repFaktura rfak = new Report.Faktura.repFaktura();
+                Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
                 rfak.dokumenat = "RAC";
                 rfak.samoIspis = testniIspis;
                 rfak.ImeForme = "Račun";

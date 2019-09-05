@@ -3083,7 +3083,7 @@ namespace PCPOS.FakturaVan
             //}
             //else
             //{
-            Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
             pr.samoIspis = true;
             pr.racunajTecaj = ValutaKuna(cbValuta.Text);
             pr.dokumenat = "FAK";
@@ -3123,7 +3123,7 @@ namespace PCPOS.FakturaVan
                 MessageBox.Show("Greška kod upisa šifre za fakturirati.", "Greška"); return;
             }
 
-            Report.Faktura.repFaktura pr = new Report.Faktura.repFaktura();
+            Report.Faktura.repFaktura2 pr = new Report.Faktura.repFaktura2();
             //pr.ispisdSFaktura = dSFaktura;
             //pr.ispisdSRfakturaStavke = dSRfakturaStavke;
             //pr.ispisdSRpodaciTvrtke = dSRpodaciTvrtke;
@@ -3396,12 +3396,12 @@ namespace PCPOS.FakturaVan
 
             ReportDataSource source1 = new ReportDataSource("DTRpodaciTvrtke", dSRpodaciTvrtke.Tables[0]);
             ReportDataSource source2 = new ReportDataSource("DTfakturaStavke", dSRfakturaStavke.Tables[0]);
-            pr.reportViewer1.LocalReport.DataSources.Clear();
-            pr.reportViewer1.LocalReport.DataSources.Add(source);
-            pr.reportViewer1.LocalReport.DataSources.Add(source1);
-            pr.reportViewer1.LocalReport.DataSources.Add(source2);
+            pr.reportViewer2.LocalReport.DataSources.Clear();
+            pr.reportViewer2.LocalReport.DataSources.Add(source);
+            pr.reportViewer2.LocalReport.DataSources.Add(source1);
+            pr.reportViewer2.LocalReport.DataSources.Add(source2);
             //pr.reportViewer1.DataBind();
-            pr.reportViewer1.LocalReport.Refresh();
+            pr.reportViewer2.LocalReport.Refresh();
 
             pr.samoIspis = true;
             pr.dokumenat = "FAK";

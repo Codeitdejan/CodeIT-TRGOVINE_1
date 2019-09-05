@@ -477,9 +477,9 @@
             <Source>External</Source>
             <Value>="file:///" &amp; Parameters!vodeni.Value</Value>
             <Sizing>Fit</Sizing>
-            <Top>0.03528cm</Top>
-            <Height>13.26804cm</Height>
-            <Width>20.5cm</Width>
+            <Top>0.3175cm</Top>
+            <Height>12.47513cm</Height>
+            <Width>20.47354cm</Width>
             <Visibility>
               <Hidden>=IIf(Parameters!vodeni.Value.ToString.Length &gt; 3, False, True)</Hidden>
             </Visibility>
@@ -1316,7 +1316,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox5</rd:DefaultName>
             <Top>4.83973cm</Top>
-            <Left>0.75373cm</Left>
+            <Left>0.72727cm</Left>
             <Height>0.4cm</Height>
             <Width>9.32258cm</Width>
             <ZIndex>8</ZIndex>
@@ -1590,7 +1590,7 @@
             </Paragraphs>
             <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
             <Top>3.32223cm</Top>
-            <Left>0.76219cm</Left>
+            <Left>0.73573cm</Left>
             <Height>0.4cm</Height>
             <Width>9.31412cm</Width>
             <ZIndex>16</ZIndex>
@@ -1626,7 +1626,7 @@
             </Paragraphs>
             <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
             <Top>3.82806cm</Top>
-            <Left>0.76219cm</Left>
+            <Left>0.73573cm</Left>
             <Height>0.4cm</Height>
             <Width>9.31412cm</Width>
             <ZIndex>17</ZIndex>
@@ -1662,7 +1662,7 @@
             </Paragraphs>
             <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
             <Top>5.34556cm</Top>
-            <Left>0.75373cm</Left>
+            <Left>0.72727cm</Left>
             <Height>0.42646cm</Height>
             <Width>9.32258cm</Width>
             <ZIndex>18</ZIndex>
@@ -1695,7 +1695,7 @@
             </Paragraphs>
             <rd:DefaultName>poslovnica_adresa</rd:DefaultName>
             <Top>4.3339cm</Top>
-            <Left>0.75373cm</Left>
+            <Left>0.72727cm</Left>
             <Height>0.4cm</Height>
             <Width>9.32258cm</Width>
             <ZIndex>19</ZIndex>
@@ -2228,8 +2228,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox35</rd:DefaultName>
-            <Top>4.57658cm</Top>
-            <Left>10.30132cm</Left>
+            <Top>7.03655cm</Top>
+            <Left>10.27217cm</Left>
             <Height>1.63249cm</Height>
             <Width>9.763cm</Width>
             <ZIndex>26</ZIndex>
@@ -2263,8 +2263,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox35</rd:DefaultName>
-            <Top>4.18825cm</Top>
-            <Left>17.98534cm</Left>
+            <Top>6.64822cm</Top>
+            <Left>17.95619cm</Left>
             <Height>0.38833cm</Height>
             <Width>2.10813cm</Width>
             <ZIndex>27</ZIndex>
@@ -2298,8 +2298,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox35</rd:DefaultName>
-            <Top>4.18825cm</Top>
-            <Left>10.30132cm</Left>
+            <Top>6.64822cm</Top>
+            <Left>10.27217cm</Left>
             <Height>0.38833cm</Height>
             <Width>7.68402cm</Width>
             <ZIndex>28</ZIndex>
@@ -2893,38 +2893,24 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox27">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>asdfsad</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox27</rd:DefaultName>
-            <Top>6.93192cm</Top>
-            <Left>12.43224cm</Left>
-            <Height>0.67823cm</Height>
-            <Width>5.20878cm</Width>
+          <Image Name="Image3">
+            <Source>External</Source>
+            <Value>=Parameters!parametarBarkod.Value</Value>
+            <MIMEType>image/bmp</MIMEType>
+            <Sizing>FitProportional</Sizing>
+            <Top>3.96212cm</Top>
+            <Left>11.54491cm</Left>
+            <Height>2.16045cm</Height>
+            <Width>8.58927cm</Width>
             <ZIndex>33</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
             </Style>
-          </Textbox>
+          </Image>
         </ReportItems>
-        <Height>15.04159cm</Height>
+        <Height>12.79263cm</Height>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2932,7 +2918,7 @@
           </Border>
         </Style>
       </Body>
-      <Width>20.5cm</Width>
+      <Width>20.8175cm</Width>
       <Page>
         <PageHeader>
           <Height>10.55386cm</Height>
@@ -2949,7 +2935,8 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value EvaluationMode="Constant">asdasds</Value>
+                      <Value>=iif(First(Fields!r1.Value, "DSPodaciTvrtke").ToString() ="1",First(Fields!naziv_fakture.Value, "DSPodaciTvrtke").ToString(),First(Fields!naziv_fakture.Value, "DSPodaciTvrtke").ToString().Replace(" R1",""))
++First(Fields!Naslov.Value, "DSKaktura")</Value>
                       <Style>
                         <FontStyle>=IIF(First(Fields!oib.Value, "DSPodaciTvrtke") = "73502823843" , "Normal","Italic")</FontStyle>
                         <FontSize>16pt</FontSize>
@@ -3353,36 +3340,6 @@ IIF(Parameters!dokumenat.Value = "PON", IIF(First(Fields!string4.Value, "DSKaktu
                 </Border>
               </Style>
             </Line>
-            <Textbox Name="Textbox29">
-              <CanGrow>true</CanGrow>
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>sadgasgsasdafsda</Value>
-                      <Style />
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <rd:DefaultName>Textbox29</rd:DefaultName>
-              <Top>0.89048cm</Top>
-              <Left>4.09787cm</Left>
-              <Height>0.71438cm</Height>
-              <Width>4.73301cm</Width>
-              <ZIndex>6</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
-              </Style>
-            </Textbox>
           </ReportItems>
           <Style>
             <Border>
@@ -3465,6 +3422,10 @@ IIF(Parameters!dokumenat.Value = "PON", IIF(First(Fields!string4.Value, "DSKaktu
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="vodeni">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="parametarBarkod">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
