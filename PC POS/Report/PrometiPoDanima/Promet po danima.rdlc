@@ -280,7 +280,6 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
-
       <Body>
         <ReportItems>
           <Tablix Name="Tablix1">
@@ -831,7 +830,7 @@
                                   <Style>
                                     <FontFamily>Verdana</FontFamily>
                                     <FontSize>7pt</FontSize>
-                                    <Format>0.000</Format>
+                                    <Format>0.00</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1102,7 +1101,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!cijena2.Value, "DataSet1")</Value>
+                    <Value>=Parameters!pdv.Value</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                       <Format>0.00</Format>
@@ -1147,7 +1146,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>oib</rd:DefaultName>
-            <Top>2.21108cm</Top>
+            <Top>2.1758cm</Top>
             <Left>9.80817cm</Left>
             <Height>0.43cm</Height>
             <Width>2.0948cm</Width>
@@ -1230,7 +1229,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!rabat1.Value, "DataSet1")</Value>
+                    <Value>=Parameters!rabat.Value</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                       <Format>0.00</Format>
@@ -1294,7 +1293,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!cijena1.Value, "DataSet1")</Value>
+                    <Value>=Parameters!osnovica.Value</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                       <Format>0.00</Format>
@@ -1326,7 +1325,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!cijena5.Value, "DataSet1")</Value>
+                    <Value>=Sum(Fields!povratna.Value, "DataSet1")+Parameters!osnovica.Value+Parameters!pdv.Value</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                       <Format>0.00</Format>
@@ -1698,7 +1697,6 @@
         <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>
-
   <ReportParameters>
     <ReportParameter Name="datum">
       <DataType>String</DataType>
@@ -1710,8 +1708,19 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="osnovica">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="pdv">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="rabat">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
- 
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>d67f4957-2038-4293-a71e-7d5889217f93</rd:ReportID>
 </Report>

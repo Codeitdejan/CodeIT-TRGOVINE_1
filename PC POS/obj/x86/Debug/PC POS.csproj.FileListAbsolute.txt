@@ -13963,7 +13963,6 @@ C:\Users\Korisnik\Desktop\POSTrgovineFinal2v2\PC POS\obj\x86\Debug\PC POS.csproj
 C:\Users\Korisnik\Desktop\POSTrgovineFinal2v2\PC POS\obj\x86\Debug\PC POS.exe
 C:\Users\Korisnik\Desktop\POSTrgovineFinal2v2\PC POS\obj\x86\Debug\PC POS.pdb
 C:\Users\Korisnik\Desktop\POSTrgovineFinal2v2\PC POS\obj\x86\Debug\PCPOS.Report.Faktura.repFaktura2.resources
-<<<<<<< HEAD
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\SqlServerTypes\x64\msvcr120.dll
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\SqlServerTypes\x86\msvcr120.dll
@@ -14402,7 +14401,6 @@ F:\work\CodeIT\CodeiT - Trgovine\PC POS\obj\x86\Debug\yo-NG\PC POS.resources.dll
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\obj\x86\Debug\PC POS.csproj.CopyComplete
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\obj\x86\Debug\PC POS.exe
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\obj\x86\Debug\PC POS.pdb
-=======
 C:\Users\Korisnik\Desktop\TRGOVINEKONACNODELA\PC POS\bin\Debug\SqlServerTypes\x64\msvcr120.dll
 C:\Users\Korisnik\Desktop\TRGOVINEKONACNODELA\PC POS\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
 C:\Users\Korisnik\Desktop\TRGOVINEKONACNODELA\PC POS\bin\Debug\SqlServerTypes\x86\msvcr120.dll
@@ -14849,7 +14847,6 @@ C:\Users\Korisnik\Desktop\TRGOVINEKONACNODELA\PC POS\bin\Debug\zxing.pdb
 C:\Users\Korisnik\Desktop\TRGOVINEKONACNODELA\PC POS\bin\Debug\zxing.xml
 C:\Users\Korisnik\Desktop\TRGOVINEKONACNODELA\PC POS\bin\Debug\zxing.presentation.pdb
 C:\Users\Korisnik\Desktop\TRGOVINEKONACNODELA\PC POS\bin\Debug\zxing.presentation.xml
-<<<<<<< HEAD
 C:\Users\Toni\Desktop\CodeiT-TrgovineFinal3\PC POS\bin\Debug\SqlServerTypes\x64\msvcr120.dll
 C:\Users\Toni\Desktop\CodeiT-TrgovineFinal3\PC POS\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
 C:\Users\Toni\Desktop\CodeiT-TrgovineFinal3\PC POS\bin\Debug\SqlServerTypes\x86\msvcr120.dll
@@ -15296,6 +15293,5 @@ C:\Users\Toni\Desktop\CodeiT-TrgovineFinal3\PC POS\obj\x86\Debug\yo-NG\PC POS.re
 C:\Users\Toni\Desktop\CodeiT-TrgovineFinal3\PC POS\obj\x86\Debug\PC POS.csproj.CopyComplete
 C:\Users\Toni\Desktop\CodeiT-TrgovineFinal3\PC POS\obj\x86\Debug\PC POS.exe
 C:\Users\Toni\Desktop\CodeiT-TrgovineFinal3\PC POS\obj\x86\Debug\PC POS.pdb
-=======
 >>>>>>> 2ca0d60338e775fcc0f298f8e878512ce6e73e26
 >>>>>>> 9c4073c672ca08c0f8d1efa2c2160fb3715151cd
