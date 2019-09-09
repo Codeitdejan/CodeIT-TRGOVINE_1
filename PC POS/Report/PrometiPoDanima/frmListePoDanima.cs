@@ -121,13 +121,10 @@ LEFT JOIN grad ON grad.id_grad = podaci_tvrtka.id_grad;";
                 RowArtikl = dSRliste.Tables[0].NewRow();
                 RowArtikl["sifra"] = datum;
                 RowArtikl["naziv"] = odDO;
-<<<<<<< HEAD
-                RowArtikl["cijena1"] = Math.Round(osnovica,6).ToString("#0.0000");
-                RowArtikl["cijena2"] = Math.Round(pdv, 6).ToString("#0.0000");
-=======
+
                 RowArtikl["cijena1"] = Math.Round(osnovica,6).ToString("#0.00");
                 RowArtikl["cijena2"] = Math.Round(pdv, 6).ToString("#0.00");
->>>>>>> f18c8c64dcc2bbfdfef00479105b9b30c08bac47
+
                 RowArtikl["cijena5"] = Math.Round(mpc, 6).ToString("#0.00"); ;
                 RowArtikl["cijena6"] = Math.Round(gotovina, 6).ToString("#0.00"); ;
                 RowArtikl["cijena7"] = Math.Round(kartice, 6).ToString("#0.00"); ;
@@ -139,13 +136,10 @@ LEFT JOIN grad ON grad.id_grad = podaci_tvrtka.id_grad;";
             else
             {
                 dataROW[0]["naziv"] = odDO;
-<<<<<<< HEAD
-                dataROW[0]["cijena1"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena1"].ToString()) + osnovica), 6).ToString("#0.0000"); ;
-                dataROW[0]["cijena2"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena2"].ToString()) + pdv), 6).ToString("#0.0000"); ;
-=======
+
                 dataROW[0]["cijena1"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena1"].ToString()) + osnovica), 6).ToString("#0.00"); ;
                 dataROW[0]["cijena2"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena2"].ToString()) + pdv), 6).ToString("#0.00"); ;
->>>>>>> f18c8c64dcc2bbfdfef00479105b9b30c08bac47
+
                 dataROW[0]["cijena5"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena5"].ToString()) + mpc), 6).ToString("#0.00"); ;
                 dataROW[0]["cijena6"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena6"].ToString()) + gotovina), 6).ToString("#0.00"); ;
                 dataROW[0]["cijena7"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena7"].ToString()) + kartice), 6).ToString("#0.00"); ;
@@ -293,14 +287,11 @@ GROUP BY racuni.datum_racuna,racuni.broj_racuna, racun_stavke.sifra_robe, roba.n
 
             DataTable DT1 = classSQL.select(sql_stv, "racun_stavke").Tables[0];
 
-<<<<<<< HEAD
 
-            string prvi = "", oddo, broj = "", date = "";
-=======
             decimal osnovicaUkupno = 0, pdvUkupno = 0, ukupnoUkupno=0, UGUkupno=0, UKUKupno=0, UOUkupno=0, rabatUkupno=0, povratnaUkupno=0;
             string prvi = "", oddo, broj = "", date = datumOD.ToString("dd.MM.yyyy");
             int brojac=0;
->>>>>>> f18c8c64dcc2bbfdfef00479105b9b30c08bac47
+
             foreach (DataRow row in DT1.Rows)
             {
                 brojac++;
@@ -311,28 +302,19 @@ GROUP BY racuni.datum_racuna,racuni.broj_racuna, racun_stavke.sifra_robe, roba.n
                 pdv = Convert.ToDecimal(row["porez"].ToString());
                 rabat = Convert.ToDecimal(row["rabat"].ToString());
                 string brojRacuna = row["broj_racuna"].ToString();
-<<<<<<< HEAD
-=======
+
                 if (brojac == 1)
                     prvi = brojRacuna;
->>>>>>> f18c8c64dcc2bbfdfef00479105b9b30c08bac47
-                //vpc = Convert.ToDecimal(row["vpc"].ToString());
-                //vpc = mpc / (1 + pdv / 100);
 
                 decimal rabatIznos = Math.Round((mpc * (rabat / 100)), 6, MidpointRounding.AwayFromZero);
                 decimal mpc_s_rab = Math.Round(mpc - rabatIznos, 6, MidpointRounding.AwayFromZero);
                 decimal mpcSRabUkupno = Math.Round((mpc_s_rab * kolicina), 6, MidpointRounding.AwayFromZero);
                 decimal rabatt = mpcc * (rabat / 100) * kolicina;
-<<<<<<< HEAD
-                if(rabat > 0)
-                {
-                    
-                }
-=======
+
 
                 ukupnoRabat += rabatt;
 
->>>>>>> f18c8c64dcc2bbfdfef00479105b9b30c08bac47
+
                 //Ovaj kod dobiva PDV
                 decimal PreracunataStopaPDV = Convert.ToDecimal((100 * pdv) / (100 + pdv + porezNaPotrosnju));
                 decimal pdvIznos = Math.Round(((mpc_s_rab * (Math.Round(PreracunataStopaPDV, 6, MidpointRounding.AwayFromZero) / 100)) * kolicina), 6, MidpointRounding.AwayFromZero);
@@ -379,31 +361,6 @@ GROUP BY racuni.datum_racuna,racuni.broj_racuna, racun_stavke.sifra_robe, roba.n
                 }
                 decimal osnovicauk = (mpcSRabUkupno - ((pdvIznos) + (porezNaPotrosnjuIznos)));
                 StopePDVaN(pdv, pdvIznos, row["nacin_placanja"].ToString(), osnovicauk, povratnaNaknada, sort);
-
-<<<<<<< HEAD
-                StopePDVaN(pdv, pdvIznos, row["nacin_placanja"].ToString(), (mpcSRabUkupno - ((pdvIznos) + (porezNaPotrosnjuIznos))), povratnaNaknada, sort);
-
-                StopePDVa(pdv, pdvIznos, (mpcSRabUkupno - ((pdvIznos) + (porezNaPotrosnjuIznos))), mpc_s_rab);
-                
-                //osnovica_ukupno = (mpcSRabUkupno - ((pdvIznos) + (porezNaPotrosnjuIznos))) + osnovica_ukupno;
-
-                DateTime d = Convert.ToDateTime(row["datum_racuna"].ToString());
-                decimal ukupno = (mpcSRabUkupno - ((pdvIznos) + (porezNaPotrosnjuIznos))) + pdvIznos + povratnaNaknada;
-                string dt = d.ToString("dd.MM.yyyy");
-                oddo = prvi + " - " + brojRacuna;
-
-                if (date != dt)
-                {
-                    prvi = brojRacuna;
-                    date = dt;
-                    Artikli(d.ToString("dd.MM.yyyy"), oddo, (mpcSRabUkupno - ((pdvIznos) + (porezNaPotrosnjuIznos))), pdvIznos, ukupno, UG, UK, UO, rabatt, povratnaNaknada);
-
-                }
-                else
-                {
-                    Artikli(d.ToString("dd.MM.yyyy"), oddo, (mpcSRabUkupno - ((pdvIznos) + (porezNaPotrosnjuIznos))), pdvIznos, ukupno, UG, UK, UO, rabatt, povratnaNaknada);
-
-=======
                 StopePDVa(pdv, pdvIznos, osnovicauk, mpc_s_rab);
                 
                 osnovica_ukupno = osnovicauk + osnovica_ukupno;
@@ -477,7 +434,7 @@ GROUP BY racuni.datum_racuna,racuni.broj_racuna, racun_stavke.sifra_robe, roba.n
                     UOUkupno += UO;
                     rabatUkupno += rabatt;
                     povratnaUkupno += povratnaNaknada;
->>>>>>> f18c8c64dcc2bbfdfef00479105b9b30c08bac47
+
                 }
             }
             
