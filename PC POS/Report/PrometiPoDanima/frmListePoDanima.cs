@@ -124,6 +124,10 @@ LEFT JOIN grad ON grad.id_grad = podaci_tvrtka.id_grad;";
 
                 RowArtikl["cijena1"] = Math.Round(osnovica,6).ToString("#0.00");
                 RowArtikl["cijena2"] = Math.Round(pdv, 6).ToString("#0.00");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6dc1faf841e30a577c75ba78045a903e8fee6c4b
                 RowArtikl["cijena5"] = Math.Round(mpc, 6).ToString("#0.00"); ;
                 RowArtikl["cijena6"] = Math.Round(gotovina, 6).ToString("#0.00"); ;
                 RowArtikl["cijena7"] = Math.Round(kartice, 6).ToString("#0.00"); ;
@@ -138,6 +142,10 @@ LEFT JOIN grad ON grad.id_grad = podaci_tvrtka.id_grad;";
 
                 dataROW[0]["cijena1"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena1"].ToString()) + osnovica), 6).ToString("#0.00"); ;
                 dataROW[0]["cijena2"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena2"].ToString()) + pdv), 6).ToString("#0.00"); ;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6dc1faf841e30a577c75ba78045a903e8fee6c4b
                 dataROW[0]["cijena5"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena5"].ToString()) + mpc), 6).ToString("#0.00"); ;
                 dataROW[0]["cijena6"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena6"].ToString()) + gotovina), 6).ToString("#0.00"); ;
                 dataROW[0]["cijena7"] = Math.Round((Convert.ToDecimal(dataROW[0]["cijena7"].ToString()) + kartice), 6).ToString("#0.00"); ;
@@ -285,9 +293,17 @@ GROUP BY racuni.datum_racuna,racuni.broj_racuna, racun_stavke.sifra_robe, roba.n
 
             DataTable DT1 = classSQL.select(sql_stv, "racun_stavke").Tables[0];
 
+<<<<<<< HEAD
             decimal osnovicaUkupno = 0, pdvUkupno = 0, ukupnoUkupno=0, UGUkupno=0, UKUKupno=0, UOUkupno=0, rabatUkupno=0, povratnaUkupno=0;
             string prvi = "", oddo, broj = "", date = datumOD.ToString("dd.MM.yyyy");
             int brojac=0;
+=======
+
+            decimal osnovicaUkupno = 0, pdvUkupno = 0, ukupnoUkupno=0, UGUkupno=0, UKUKupno=0, UOUkupno=0, rabatUkupno=0, povratnaUkupno=0;
+            string prvi = "", oddo, broj = "", date = datumOD.ToString("dd.MM.yyyy");
+            int brojac=0;
+
+>>>>>>> 6dc1faf841e30a577c75ba78045a903e8fee6c4b
             foreach (DataRow row in DT1.Rows)
             {
                 brojac++;
@@ -306,9 +322,17 @@ GROUP BY racuni.datum_racuna,racuni.broj_racuna, racun_stavke.sifra_robe, roba.n
                 decimal mpc_s_rab = Math.Round(mpc - rabatIznos, 6, MidpointRounding.AwayFromZero);
                 decimal mpcSRabUkupno = Math.Round((mpc_s_rab * kolicina), 6, MidpointRounding.AwayFromZero);
                 decimal rabatt = mpcc * (rabat / 100) * kolicina;
+<<<<<<< HEAD
 
                 ukupnoRabat += rabatt;
 
+=======
+
+
+                ukupnoRabat += rabatt;
+
+
+>>>>>>> 6dc1faf841e30a577c75ba78045a903e8fee6c4b
                 //Ovaj kod dobiva PDV
                 decimal PreracunataStopaPDV = Convert.ToDecimal((100 * pdv) / (100 + pdv + porezNaPotrosnju));
                 decimal pdvIznos = Math.Round(((mpc_s_rab * (Math.Round(PreracunataStopaPDV, 6, MidpointRounding.AwayFromZero) / 100)) * kolicina), 6, MidpointRounding.AwayFromZero);
@@ -428,6 +452,10 @@ GROUP BY racuni.datum_racuna,racuni.broj_racuna, racun_stavke.sifra_robe, roba.n
                     UOUkupno += UO;
                     rabatUkupno += rabatt;
                     povratnaUkupno += povratnaNaknada;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6dc1faf841e30a577c75ba78045a903e8fee6c4b
                 }
             }
             
