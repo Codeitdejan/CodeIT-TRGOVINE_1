@@ -15739,3 +15739,9 @@ F:\work\CodeIT\CodeiT-TrgovineFinal3\PC POS\obj\x86\Debug\yo-NG\PC POS.resources
 F:\work\CodeIT\CodeiT-TrgovineFinal3\PC POS\obj\x86\Debug\PC POS.csproj.CopyComplete
 F:\work\CodeIT\CodeiT-TrgovineFinal3\PC POS\obj\x86\Debug\PC POS.exe
 F:\work\CodeIT\CodeiT-TrgovineFinal3\PC POS\obj\x86\Debug\PC POS.pdb
+F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\zxing.dll
+F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\zxing.presentation.dll
+F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\zxing.pdb
+F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\zxing.xml
+F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\zxing.presentation.pdb
+F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\zxing.presentation.xml

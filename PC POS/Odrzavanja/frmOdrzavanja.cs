@@ -22,7 +22,6 @@ namespace PCPOS.Odrzavanja
             SetirajNaplatniPoslovnicuDefault();
             fill();
             Racunaj();
-            //this.Paint += new PaintEventHandler(Form1_Paint);
         }
 
         private static DataTable DTpostavke = classSQL.select_settings("SELECT * FROM postavke", "postavke").Tables[0];
@@ -88,7 +87,7 @@ namespace PCPOS.Odrzavanja
                     DT.Rows[i]["tablet"].ToString() == "" ? "0" : DT.Rows[i]["tablet"].ToString(),
                     DT.Rows[i]["pcpos"].ToString() == "" ? "0" : DT.Rows[i]["pcpos"].ToString(),
                     DT.Rows[i]["pccaffe"].ToString() == "" ? "0" : DT.Rows[i]["pccaffe"].ToString(),
-                    DT.Rows[i]["resort"].ToString() == "" ? "0" : DT.Rows[i]["resort"].ToString()
+                    DT.Rows[i]["nova_godina"].ToString() == "" ? "0" : DT.Rows[i]["nova_godina"].ToString()
                     );
             }
         }

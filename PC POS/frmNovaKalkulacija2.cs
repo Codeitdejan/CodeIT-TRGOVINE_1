@@ -3113,7 +3113,6 @@ sifrePovratnaNaknadaUpdate.Rows[i]["id"].ToString());
 
         private void UcitajPodatkeIzExcelaZaGeneriranjeKalkulacije()
         {
-            MessageBox.Show("Usao sam");
             DataTable DTmdg0 = new DataTable();
             DataTable DTmdg0_mda = new DataTable();
             MessageBox.Show("Odaberite excel file sa nazivom mdg0.xls!");

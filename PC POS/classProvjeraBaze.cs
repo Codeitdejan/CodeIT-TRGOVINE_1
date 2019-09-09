@@ -2245,6 +2245,12 @@ alter table racuni add column avio_maks_tezina_polijetanja numeric(15,6) default
                              " ALTER TABLE partners_odrzavanje ADD COLUMN resort int;";
                 classSQL.insert(sql);
             }
+            a = DTremote.Select("table_name = 'partners_odrzavanje' and column_name = 'nova_godina'");
+            if (a.Length == 0)
+            {
+                string sql = " ALTER TABLE partners_odrzavanje ADD COLUMN nova_godina int;";
+                classSQL.insert(sql);
+            }
         }
 
         private static void Alterkontni_plan(DataTable DTremote)

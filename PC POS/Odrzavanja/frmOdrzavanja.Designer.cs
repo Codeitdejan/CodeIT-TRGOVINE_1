@@ -253,6 +253,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -264,6 +265,7 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -275,6 +277,7 @@
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -286,6 +289,7 @@
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -297,6 +301,7 @@
             // 
             // lblOdrMpc
             // 
+            this.lblOdrMpc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOdrMpc.BackColor = System.Drawing.Color.Transparent;
             this.lblOdrMpc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblOdrMpc.Location = new System.Drawing.Point(910, 533);
@@ -308,6 +313,7 @@
             // 
             // lblUkupnoInternetMpc
             // 
+            this.lblUkupnoInternetMpc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUkupnoInternetMpc.BackColor = System.Drawing.Color.Transparent;
             this.lblUkupnoInternetMpc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblUkupnoInternetMpc.Location = new System.Drawing.Point(910, 517);
@@ -319,6 +325,7 @@
             // 
             // lblUkOd
             // 
+            this.lblUkOd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUkOd.BackColor = System.Drawing.Color.Transparent;
             this.lblUkOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblUkOd.Location = new System.Drawing.Point(910, 501);
@@ -330,6 +337,7 @@
             // 
             // lblUkInt
             // 
+            this.lblUkInt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUkInt.BackColor = System.Drawing.Color.Transparent;
             this.lblUkInt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.lblUkInt.Location = new System.Drawing.Point(910, 485);
@@ -405,9 +413,8 @@
             // resort
             // 
             this.resort.FillWeight = 60F;
-            this.resort.HeaderText = "RESORT";
+            this.resort.HeaderText = "Nova godina";
             this.resort.Name = "resort";
-            this.resort.Visible = false;
             this.resort.Width = 60;
             // 
             // pdv
