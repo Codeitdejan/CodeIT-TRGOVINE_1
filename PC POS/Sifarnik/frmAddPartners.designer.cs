@@ -81,17 +81,15 @@
             this.label23 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chbGodisnjeOdr = new System.Windows.Forms.CheckBox();
-            this.chbResort = new System.Windows.Forms.CheckBox();
-            this.chbCaffe = new System.Windows.Forms.CheckBox();
-            this.chbTablet = new System.Windows.Forms.CheckBox();
+            this.chbTrgDrustvo = new System.Windows.Forms.CheckBox();
             this.chbBivsiKorisnik = new System.Windows.Forms.CheckBox();
-            this.chbPcPos = new System.Windows.Forms.CheckBox();
+            this.chbUgostiteljstvo = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.nuBrojVipa = new System.Windows.Forms.NumericUpDown();
             this.nuBrojOdrzavanja = new System.Windows.Forms.NumericUpDown();
             this.chbUgovor = new System.Windows.Forms.CheckBox();
-            this.chbWebUred = new System.Windows.Forms.CheckBox();
+            this.chbGodisnjaNaknada = new System.Windows.Forms.CheckBox();
             this.chbKorisnikPrograma = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -633,7 +631,6 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Novi unos";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox1
@@ -800,17 +797,15 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.chbGodisnjeOdr);
-            this.groupBox3.Controls.Add(this.chbResort);
-            this.groupBox3.Controls.Add(this.chbCaffe);
-            this.groupBox3.Controls.Add(this.chbTablet);
+            this.groupBox3.Controls.Add(this.chbTrgDrustvo);
             this.groupBox3.Controls.Add(this.chbBivsiKorisnik);
-            this.groupBox3.Controls.Add(this.chbPcPos);
+            this.groupBox3.Controls.Add(this.chbUgostiteljstvo);
             this.groupBox3.Controls.Add(this.label21);
             this.groupBox3.Controls.Add(this.label20);
             this.groupBox3.Controls.Add(this.nuBrojVipa);
             this.groupBox3.Controls.Add(this.nuBrojOdrzavanja);
             this.groupBox3.Controls.Add(this.chbUgovor);
-            this.groupBox3.Controls.Add(this.chbWebUred);
+            this.groupBox3.Controls.Add(this.chbGodisnjaNaknada);
             this.groupBox3.Controls.Add(this.chbKorisnikPrograma);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.comboBox1);
@@ -832,47 +827,19 @@
             this.chbGodisnjeOdr.TabIndex = 9;
             this.chbGodisnjeOdr.Text = "Godišnje odr.";
             this.chbGodisnjeOdr.UseVisualStyleBackColor = true;
-            this.chbGodisnjeOdr.Visible = false;
             this.chbGodisnjeOdr.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
             // 
-            // chbResort
+            // chbTrgDrustvo
             // 
-            this.chbResort.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.chbResort.AutoSize = true;
-            this.chbResort.Location = new System.Drawing.Point(727, 23);
-            this.chbResort.Name = "chbResort";
-            this.chbResort.Size = new System.Drawing.Size(71, 17);
-            this.chbResort.TabIndex = 13;
-            this.chbResort.Text = "RESORT";
-            this.chbResort.UseVisualStyleBackColor = true;
-            this.chbResort.Visible = false;
-            this.chbResort.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
-            // 
-            // chbCaffe
-            // 
-            this.chbCaffe.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.chbCaffe.AutoSize = true;
-            this.chbCaffe.Location = new System.Drawing.Point(650, 40);
-            this.chbCaffe.Name = "chbCaffe";
-            this.chbCaffe.Size = new System.Drawing.Size(73, 17);
-            this.chbCaffe.TabIndex = 11;
-            this.chbCaffe.Text = "PCCAFFE";
-            this.chbCaffe.UseVisualStyleBackColor = true;
-            this.chbCaffe.Visible = false;
-            this.chbCaffe.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
-            // 
-            // chbTablet
-            // 
-            this.chbTablet.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.chbTablet.AutoSize = true;
-            this.chbTablet.Location = new System.Drawing.Point(727, 40);
-            this.chbTablet.Name = "chbTablet";
-            this.chbTablet.Size = new System.Drawing.Size(67, 17);
-            this.chbTablet.TabIndex = 12;
-            this.chbTablet.Text = "TABLET";
-            this.chbTablet.UseVisualStyleBackColor = true;
-            this.chbTablet.Visible = false;
-            this.chbTablet.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
+            this.chbTrgDrustvo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chbTrgDrustvo.AutoSize = true;
+            this.chbTrgDrustvo.Location = new System.Drawing.Point(650, 40);
+            this.chbTrgDrustvo.Name = "chbTrgDrustvo";
+            this.chbTrgDrustvo.Size = new System.Drawing.Size(156, 17);
+            this.chbTrgDrustvo.TabIndex = 11;
+            this.chbTrgDrustvo.Text = "Code-iT Trgovačko društvo";
+            this.chbTrgDrustvo.UseVisualStyleBackColor = true;
+            this.chbTrgDrustvo.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
             // 
             // chbBivsiKorisnik
             // 
@@ -884,21 +851,19 @@
             this.chbBivsiKorisnik.TabIndex = 8;
             this.chbBivsiKorisnik.Text = "Bivši korisnik";
             this.chbBivsiKorisnik.UseVisualStyleBackColor = true;
-            this.chbBivsiKorisnik.Visible = false;
             this.chbBivsiKorisnik.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
             // 
-            // chbPcPos
+            // chbUgostiteljstvo
             // 
-            this.chbPcPos.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.chbPcPos.AutoSize = true;
-            this.chbPcPos.Location = new System.Drawing.Point(650, 23);
-            this.chbPcPos.Name = "chbPcPos";
-            this.chbPcPos.Size = new System.Drawing.Size(62, 17);
-            this.chbPcPos.TabIndex = 10;
-            this.chbPcPos.Text = "PCPOS";
-            this.chbPcPos.UseVisualStyleBackColor = true;
-            this.chbPcPos.Visible = false;
-            this.chbPcPos.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
+            this.chbUgostiteljstvo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chbUgostiteljstvo.AutoSize = true;
+            this.chbUgostiteljstvo.Location = new System.Drawing.Point(650, 23);
+            this.chbUgostiteljstvo.Name = "chbUgostiteljstvo";
+            this.chbUgostiteljstvo.Size = new System.Drawing.Size(129, 17);
+            this.chbUgostiteljstvo.TabIndex = 10;
+            this.chbUgostiteljstvo.Text = "Code-iT Ugostiteljstvo";
+            this.chbUgostiteljstvo.UseVisualStyleBackColor = true;
+            this.chbUgostiteljstvo.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
             // 
             // label21
             // 
@@ -927,7 +892,6 @@
             this.nuBrojVipa.Name = "nuBrojVipa";
             this.nuBrojVipa.Size = new System.Drawing.Size(40, 20);
             this.nuBrojVipa.TabIndex = 4;
-            this.nuBrojVipa.Visible = false;
             this.nuBrojVipa.ValueChanged += new System.EventHandler(this.nuBrojVipa_ValueChanged);
             // 
             // nuBrojOdrzavanja
@@ -937,7 +901,6 @@
             this.nuBrojOdrzavanja.Name = "nuBrojOdrzavanja";
             this.nuBrojOdrzavanja.Size = new System.Drawing.Size(40, 20);
             this.nuBrojOdrzavanja.TabIndex = 2;
-            this.nuBrojOdrzavanja.Visible = false;
             this.nuBrojOdrzavanja.ValueChanged += new System.EventHandler(this.nuBrojOdrzavanja_ValueChanged);
             // 
             // chbUgovor
@@ -950,21 +913,19 @@
             this.chbUgovor.TabIndex = 6;
             this.chbUgovor.Text = "Ugovor";
             this.chbUgovor.UseVisualStyleBackColor = true;
-            this.chbUgovor.Visible = false;
             this.chbUgovor.CheckedChanged += new System.EventHandler(this.chbUgovor_CheckedChanged);
             // 
-            // chbWebUred
+            // chbGodisnjaNaknada
             // 
-            this.chbWebUred.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.chbWebUred.AutoSize = true;
-            this.chbWebUred.Location = new System.Drawing.Point(375, 56);
-            this.chbWebUred.Name = "chbWebUred";
-            this.chbWebUred.Size = new System.Drawing.Size(73, 17);
-            this.chbWebUred.TabIndex = 5;
-            this.chbWebUred.Text = "Web ured";
-            this.chbWebUred.UseVisualStyleBackColor = true;
-            this.chbWebUred.Visible = false;
-            this.chbWebUred.CheckedChanged += new System.EventHandler(this.chbWebUred_CheckedChanged);
+            this.chbGodisnjaNaknada.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.chbGodisnjaNaknada.AutoSize = true;
+            this.chbGodisnjaNaknada.Location = new System.Drawing.Point(375, 56);
+            this.chbGodisnjaNaknada.Name = "chbGodisnjaNaknada";
+            this.chbGodisnjaNaknada.Size = new System.Drawing.Size(114, 17);
+            this.chbGodisnjaNaknada.TabIndex = 5;
+            this.chbGodisnjaNaknada.Text = "Godišnja Naknada";
+            this.chbGodisnjaNaknada.UseVisualStyleBackColor = true;
+            this.chbGodisnjaNaknada.CheckedChanged += new System.EventHandler(this.chbWebUred_CheckedChanged);
             // 
             // chbKorisnikPrograma
             // 
@@ -976,7 +937,6 @@
             this.chbKorisnikPrograma.TabIndex = 7;
             this.chbKorisnikPrograma.Text = "Korisnik programa";
             this.chbKorisnikPrograma.UseVisualStyleBackColor = true;
-            this.chbKorisnikPrograma.Visible = false;
             this.chbKorisnikPrograma.CheckedChanged += new System.EventHandler(this.chbKorisnikPrograma_CheckedChanged);
             // 
             // label16
@@ -1319,7 +1279,6 @@
             // 
             // chbZacrniPodatke
             // 
-            this.chbZacrniPodatke.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.chbZacrniPodatke.AutoSize = true;
             this.chbZacrniPodatke.BackColor = System.Drawing.Color.Transparent;
             this.chbZacrniPodatke.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -1443,17 +1402,15 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.CheckBox chbUgovor;
-        private System.Windows.Forms.CheckBox chbWebUred;
+        private System.Windows.Forms.CheckBox chbGodisnjaNaknada;
         private System.Windows.Forms.CheckBox chbKorisnikPrograma;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.NumericUpDown nuBrojVipa;
         private System.Windows.Forms.NumericUpDown nuBrojOdrzavanja;
-        private System.Windows.Forms.CheckBox chbResort;
-        private System.Windows.Forms.CheckBox chbCaffe;
-        private System.Windows.Forms.CheckBox chbTablet;
+        private System.Windows.Forms.CheckBox chbTrgDrustvo;
         private System.Windows.Forms.CheckBox chbBivsiKorisnik;
-        private System.Windows.Forms.CheckBox chbPcPos;
+        private System.Windows.Forms.CheckBox chbUgostiteljstvo;
         private System.Windows.Forms.CheckBox chbGodisnjeOdr;
         private System.Windows.Forms.TextBox txtOdgodaPlacanja;
         private System.Windows.Forms.Label label23;

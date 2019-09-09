@@ -41,7 +41,7 @@
             this.dSkalkulacija_stavke = new PCPOS.Dataset.DSkalkulacija_stavke();
             this.DTstopeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dSstope = new PCPOS.Dataset.DSstope();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.dTKalkulacijABindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSkalkulacija)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dTRpodaciTvrtkeBindingSource)).BeginInit();
@@ -92,9 +92,9 @@
             this.dSstope.DataSetName = "DSstope";
             this.dSstope.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // reportViewer1
+            // reportViewer2
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reportViewer2.Dock = System.Windows.Forms.DockStyle.Fill;
             reportDataSource1.Name = "DSkalk";
             reportDataSource1.Value = this.dTKalkulacijABindingSource;
             reportDataSource2.Name = "DSpodaci";
@@ -103,24 +103,22 @@
             reportDataSource3.Value = this.dTkalkDtavkeBindingSource;
             reportDataSource4.Name = "dStope";
             reportDataSource4.Value = this.DTstopeBindingSource;
-            reportDataSource4.Name = "dNaziviArtiklaa";
-            reportDataSource4.Value = this.DTstopeBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource3);
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource4);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "PCPOS.Report.Kalkulacija2016.Kalkulacija.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 0);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(1125, 612);
-            this.reportViewer1.TabIndex = 0;
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource3);
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource4);
+            this.reportViewer2.LocalReport.ReportEmbeddedResource = "PCPOS.Report.Kalkulacija2016.Kalkulacija.rdlc";
+            this.reportViewer2.Location = new System.Drawing.Point(0, 0);
+            this.reportViewer2.Name = "reportViewer2";
+            this.reportViewer2.Size = new System.Drawing.Size(1125, 612);
+            this.reportViewer2.TabIndex = 0;
             // 
             // frmKalkulacija2016
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 612);
-            this.Controls.Add(this.reportViewer1);
+            this.Controls.Add(this.reportViewer2);
             this.Name = "frmKalkulacija2016";
             this.Text = "Kalkulacija";
             this.Load += new System.EventHandler(this.frmKalkulacija_Load);
@@ -147,5 +145,6 @@
         private System.Windows.Forms.BindingSource dTkalkDtavkeBindingSource;
         private Dataset.DSstope dSstope;
         private System.Windows.Forms.BindingSource DTstopeBindingSource;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer2;
     }
 }

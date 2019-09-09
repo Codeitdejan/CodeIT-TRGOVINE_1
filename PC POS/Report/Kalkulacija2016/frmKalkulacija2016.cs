@@ -31,7 +31,7 @@ namespace PCPOS.Report.Kalkulacija
             int heigt = SystemInformation.VirtualScreen.Height;
             this.Height = heigt - 60;
             this.Location = new Point((SystemInformation.VirtualScreen.Width / 2) - 411, 5);
-            this.reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+            this.reportViewer2.SetDisplayMode(DisplayMode.PrintLayout);
             if (dokument == "kalkulacija")
             {
                 SetKalkulacija();
@@ -52,10 +52,9 @@ namespace PCPOS.Report.Kalkulacija
             catch { }
 
             ReportParameter p1 = new ReportParameter("marza", marza);
-            this.reportViewer1.LocalReport.EnableExternalImages = true;
-            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p1 });
-
-            this.reportViewer1.RefreshReport();
+            this.reportViewer2.LocalReport.EnableExternalImages = true;
+            this.reportViewer2.LocalReport.SetParameters(new ReportParameter[] { p1 });
+            this.reportViewer2.RefreshReport();
         }
 
         private void SetPovratDobavljacu()
@@ -332,7 +331,7 @@ where k.broj = '" + broj_kalkulacije + "' and k.id_skladiste = '" + skladiste + 
                 povratna_naknada = Convert.ToDecimal(dsPovratnaNaknada.Tables[0].Rows[0][0]);
 
             ReportParameter p2 = new ReportParameter("povratna_naknada", povratna_naknada.ToString());
-            this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p2 });
+            this.reportViewer2.LocalReport.SetParameters(new ReportParameter[] { p2 });
 
             string SustavPdv = @"select * from partners where id_partner = (select id_partner from kalkulacija where broj = '" + broj_kalkulacije + @"' and id_skladiste = '" + skladiste + "')";
 
@@ -396,7 +395,7 @@ WHERE " + filter + " ";
                 ks.porez AS pdv,
                 pn.iznos as povratna_naknada
                 FROM kalkulacija_stavke ks
-                LEFT JOIN roba r ON ks.id_stavka = cast(r.sifra as integer)
+                LEFT JOIN roba r ON ks.sifra = r.sifra
                 LEFT JOIN povratna_naknada pn on ks.sifra = pn.sifra
                 WHERE {0}
                 ORDER BY CAST(id_stavka AS INT) ASC;", filter1);

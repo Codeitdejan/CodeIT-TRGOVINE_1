@@ -50,9 +50,8 @@ namespace PCPOS.Sifarnik
                 chbKorisnikPrograma.Visible = true;
                 chbUgovor.Visible = true;
                 chbBivsiKorisnik.Visible = true;
-                chbPcPos.Visible = true;
-                chbCaffe.Visible = true;
-                chbResort.Visible = true;
+                chbUgostiteljstvo.Visible = true;
+                chbTrgDrustvo.Visible = true;
                 chbGodisnjeOdr.Visible = true;
             }
         }
@@ -750,9 +749,9 @@ VALUES
                 nuBrojVipa.Value = vip;
 
                 if (DTodr.Rows[0]["web_ured"].ToString() == "1")
-                    chbWebUred.Checked = true;
+                    chbGodisnjaNaknada.Checked = true;
                 else
-                    chbWebUred.Checked = false;
+                    chbGodisnjaNaknada.Checked = false;
 
                 if (DTodr.Rows[0]["nas_program"].ToString() == "1")
                     chbKorisnikPrograma.Checked = true;
@@ -764,31 +763,40 @@ VALUES
                 else
                     chbUgovor.Checked = false;
 
+                if (DTodr.Rows[0]["nova_godina"].ToString() == "1")
+                {
+                    chbGodisnjaNaknada.Checked = true;
+                }
+                else
+                {
+                    chbGodisnjaNaknada.Checked = false;
+                }
+
                 if (DTodr.Rows[0]["bivsi_korisnik"].ToString() == "1")
                     chbBivsiKorisnik.Checked = true;
                 else
                     chbBivsiKorisnik.Checked = false;
-
+                /*
                 if (DTodr.Rows[0]["tablet"].ToString() == "1")
-                    chbTablet.Checked = true;
+                    //chbTablet.Checked = true;
                 else
-                    chbTablet.Checked = false;
-
+                    //chbTablet.Checked = false;
+                */
                 if (DTodr.Rows[0]["pcpos"].ToString() == "1")
-                    chbPcPos.Checked = true;
+                    chbUgostiteljstvo.Checked = true;
                 else
-                    chbPcPos.Checked = false;
+                    chbUgostiteljstvo.Checked = false;
 
                 if (DTodr.Rows[0]["pccaffe"].ToString() == "1")
-                    chbCaffe.Checked = true;
+                    chbTrgDrustvo.Checked = true;
                 else
-                    chbCaffe.Checked = false;
-
+                    chbTrgDrustvo.Checked = false;
+                /*
                 if (DTodr.Rows[0]["resort"].ToString() == "1")
-                    chbResort.Checked = true;
+                    //chbResort.Checked = true;
                 else
                     chbResort.Checked = false;
-
+                */
                 if (DTodr.Rows[0]["godisnje_odr"].ToString() == "1")
                     chbGodisnjeOdr.Checked = true;
                 else
@@ -798,12 +806,10 @@ VALUES
             {
                 chbUgovor.Checked = false;
                 chbKorisnikPrograma.Checked = false;
-                chbWebUred.Checked = false;
+                chbGodisnjaNaknada.Checked = false;
                 chbBivsiKorisnik.Checked = false;
-                chbTablet.Checked = false;
-                chbPcPos.Checked = false;
-                chbCaffe.Checked = false;
-                chbResort.Checked = false;
+                chbUgostiteljstvo.Checked = false;
+                chbTrgDrustvo.Checked = false;
                 chbGodisnjeOdr.Checked = false;
 
                 nuBrojOdrzavanja.Value = 0;
@@ -1078,24 +1084,26 @@ order by x.sort, x.naziv;");
 
         private void SpremiPromjeneSaOdrzavanjima()
         {
+            /*
             if (!zapocni_uređivanje_odrzavanja)
                 return;
-
-            string odrzavanje = "0", broj_odrzavanja = "0", vip = "0", broj_vipa = "0", nas_program = "0", web_ured = "0", ugovor = "0", bivsi_korisnik = "0", tablet = "0", pcpos = "0", pccaffe = "0", resort = "0", godisnje_odr = "0";
+            */
+            string odrzavanje = "0", broj_odrzavanja = "0", vip = "0", broj_vipa = "0", nas_program = "0", web_ured = "0", ugovor = "0", bivsi_korisnik = "0", tablet = "0", pcpos = "0", pccaffe = "0", resort = "0", godisnje_odr = "0", nova_godina="0";
 
             if (nuBrojOdrzavanja.Value > 0) { odrzavanje = "123.75"; broj_odrzavanja = nuBrojOdrzavanja.Value.ToString(); }
             if (nuBrojVipa.Value > 0) { vip = "50"; broj_vipa = nuBrojVipa.Value.ToString(); }
             if (chbKorisnikPrograma.Checked) { nas_program = "1"; }
-            if (chbWebUred.Checked) { web_ured = "1"; }
+            if (chbGodisnjaNaknada.Checked) { nova_godina = "1"; }
             if (chbUgovor.Checked) { ugovor = "1"; }
             if (chbBivsiKorisnik.Checked) { bivsi_korisnik = "1"; }
-            if (chbTablet.Checked) { tablet = "1"; }
-            if (chbPcPos.Checked) { pcpos = "1"; }
-            if (chbCaffe.Checked) { pccaffe = "1"; }
-            if (chbResort.Checked) { resort = "1"; }
+            if (chbTrgDrustvo.Checked) { pcpos = "1"; }
+            if (chbUgostiteljstvo.Checked) { pccaffe = "1"; }
+          
             if (chbGodisnjeOdr.Checked) { godisnje_odr = "1"; }
 
-            DataTable DTodr = classSQL.select(string.Format("SELECT * FROM partners_odrzavanje WHERE id_partner ='{0}';", txtSifra.Text), "partners_odrzavanje").Tables[0];
+            string sqlUpitProvjerePostojanjaPartnera = $"SELECT * FROM partners_odrzavanje WHERE id_partner ='{ txtSifra.Text}'";
+
+            DataTable DTodr = classSQL.select(sqlUpitProvjerePostojanjaPartnera, "partners_odrzavanje").Tables[0];
             if (DTodr.Rows.Count > 0)
             {
                 classSQL.update(string.Format(@"UPDATE partners_odrzavanje
@@ -1110,7 +1118,8 @@ SET
     pcpos = '{7}',
     pccaffe = '{8}',
     godisnje_odr = '{9}',
-    resort = '{10}'
+    resort = '{10}',
+    nova_godina='{12}'
 WHERE id_partner = '{11}';",
     broj_odrzavanja,
     broj_vipa,
@@ -1123,32 +1132,15 @@ WHERE id_partner = '{11}';",
     pccaffe,
     godisnje_odr,
     resort,
-    txtSifra.Text));
+    txtSifra.Text,
+    nova_godina));
             }
             else
             {
-                classSQL.insert(string.Format(@"INSERT INTO partners_odrzavanje
-(
-    internet, internet_kol, odrzavanje, odrzavanje_kol, nas_program, web_ured, ugovor, id_partner, godisnje_odr, bivsi_korisnik, tablet, pcpos, pccaffe, resort
-)
-VALUES
-(
-    '{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}', '{13}'
-);",
-    vip,
-    broj_vipa,
-    odrzavanje,
-    broj_odrzavanja,
-    nas_program,
-    web_ured,
-    ugovor,
-    txtSifra.Text,
-    godisnje_odr,
-    bivsi_korisnik,
-    tablet,
-    pcpos,
-    pccaffe,
-    resort));
+                string sqlUnosa = $"INSERT INTO partners_odrzavanje(internet, internet_kol, odrzavanje, odrzavanje_kol, nas_program, web_ured, ugovor, id_partner, godisnje_odr, bivsi_korisnik, tablet, pcpos, pccaffe, resort, nova_godina) values('" +
+                                  vip + "','" + broj_vipa + "','" + odrzavanje + "','" + broj_odrzavanja + "','" + nas_program + "','" + web_ured + "','" + ugovor + "','" + txtSifra.Text + "','" + godisnje_odr + "','" + bivsi_korisnik + "','" + tablet + "','" + pcpos + "','" + pccaffe + "','" + resort + "','" + nova_godina + "')";
+                                  
+                classSQL.insert(sqlUnosa);
             }
         }
 

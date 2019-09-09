@@ -831,7 +831,7 @@
                                   <Style>
                                     <FontFamily>Verdana</FontFamily>
                                     <FontSize>7pt</FontSize>
-                                    <Format>0.000</Format>
+                                    <Format>0.00</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1711,7 +1711,7 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
- 
+  
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>d67f4957-2038-4293-a71e-7d5889217f93</rd:ReportID>
 </Report>

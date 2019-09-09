@@ -40,7 +40,6 @@ namespace PCPOS.Report.Faktura
 
         private void repFaktura2_Load(object sender, EventArgs e)
         {
-            MessageBox.Show("Vidimo promjene");
             LoadFunkcija();
             int height = SystemInformation.VirtualScreen.Height;
             this.reportViewer2.RefreshReport();

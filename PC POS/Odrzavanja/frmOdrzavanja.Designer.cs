@@ -31,18 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOdrzavanja));
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.sifra = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partner = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cijena_interneta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.internet_kolicina = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cijena_odrzavanje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kolicina_odrzavanje = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.web_ured = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tablet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pcpos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pccaffe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.resort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pdv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnDodaj = new System.Windows.Forms.Button();
@@ -62,6 +50,18 @@
             this.lblUkupnoInternetMpc = new System.Windows.Forms.Label();
             this.lblUkOd = new System.Windows.Forms.Label();
             this.lblUkInt = new System.Windows.Forms.Label();
+            this.sifra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partner = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cijena_interneta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.internet_kolicina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cijena_odrzavanje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kolicina_odrzavanje = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.web_ured = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tablet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pcpos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pccaffe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.resort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pdv = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnTraziPartnera)).BeginInit();
@@ -99,80 +99,6 @@
             this.dgv.TabIndex = 23;
             this.dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellClick);
             this.dgv.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellEndEdit);
-            // 
-            // sifra
-            // 
-            this.sifra.HeaderText = "Šifra";
-            this.sifra.Name = "sifra";
-            this.sifra.ReadOnly = true;
-            // 
-            // partner
-            // 
-            this.partner.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.partner.HeaderText = "Partner";
-            this.partner.Name = "partner";
-            this.partner.ReadOnly = true;
-            // 
-            // cijena_interneta
-            // 
-            this.cijena_interneta.HeaderText = "Cijena kasa";
-            this.cijena_interneta.Name = "cijena_interneta";
-            // 
-            // internet_kolicina
-            // 
-            this.internet_kolicina.HeaderText = "Količina kasa";
-            this.internet_kolicina.Name = "internet_kolicina";
-            // 
-            // cijena_odrzavanje
-            // 
-            this.cijena_odrzavanje.HeaderText = "Cijena održavanje";
-            this.cijena_odrzavanje.Name = "cijena_odrzavanje";
-            // 
-            // kolicina_odrzavanje
-            // 
-            this.kolicina_odrzavanje.HeaderText = "Količina održavanje";
-            this.kolicina_odrzavanje.Name = "kolicina_odrzavanje";
-            // 
-            // web_ured
-            // 
-            this.web_ured.FillWeight = 40F;
-            this.web_ured.HeaderText = "Web";
-            this.web_ured.Name = "web_ured";
-            this.web_ured.Width = 40;
-            // 
-            // tablet
-            // 
-            this.tablet.FillWeight = 50F;
-            this.tablet.HeaderText = "Tablet";
-            this.tablet.Name = "tablet";
-            this.tablet.Width = 50;
-            // 
-            // pcpos
-            // 
-            this.pcpos.FillWeight = 50F;
-            this.pcpos.HeaderText = "PCPOS";
-            this.pcpos.Name = "pcpos";
-            this.pcpos.Width = 50;
-            // 
-            // pccaffe
-            // 
-            this.pccaffe.FillWeight = 60F;
-            this.pccaffe.HeaderText = "PCCAFFE";
-            this.pccaffe.Name = "pccaffe";
-            this.pccaffe.Width = 60;
-            // 
-            // resort
-            // 
-            this.resort.FillWeight = 60F;
-            this.resort.HeaderText = "RESORT";
-            this.resort.Name = "resort";
-            this.resort.Width = 60;
-            // 
-            // pdv
-            // 
-            this.pdv.HeaderText = "pdv";
-            this.pdv.Name = "pdv";
-            this.pdv.Visible = false;
             // 
             // groupBox1
             // 
@@ -413,6 +339,83 @@
             this.lblUkInt.TabIndex = 75;
             this.lblUkInt.Text = "0,00";
             // 
+            // sifra
+            // 
+            this.sifra.HeaderText = "Šifra";
+            this.sifra.Name = "sifra";
+            this.sifra.ReadOnly = true;
+            // 
+            // partner
+            // 
+            this.partner.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.partner.HeaderText = "Partner";
+            this.partner.Name = "partner";
+            this.partner.ReadOnly = true;
+            // 
+            // cijena_interneta
+            // 
+            this.cijena_interneta.HeaderText = "Cijena kasa";
+            this.cijena_interneta.Name = "cijena_interneta";
+            // 
+            // internet_kolicina
+            // 
+            this.internet_kolicina.HeaderText = "Količina kasa";
+            this.internet_kolicina.Name = "internet_kolicina";
+            // 
+            // cijena_odrzavanje
+            // 
+            this.cijena_odrzavanje.HeaderText = "Cijena održavanje";
+            this.cijena_odrzavanje.Name = "cijena_odrzavanje";
+            // 
+            // kolicina_odrzavanje
+            // 
+            this.kolicina_odrzavanje.HeaderText = "Količina održavanje";
+            this.kolicina_odrzavanje.Name = "kolicina_odrzavanje";
+            // 
+            // web_ured
+            // 
+            this.web_ured.FillWeight = 40F;
+            this.web_ured.HeaderText = "Web";
+            this.web_ured.Name = "web_ured";
+            this.web_ured.Visible = false;
+            this.web_ured.Width = 40;
+            // 
+            // tablet
+            // 
+            this.tablet.FillWeight = 50F;
+            this.tablet.HeaderText = "Tablet";
+            this.tablet.Name = "tablet";
+            this.tablet.Visible = false;
+            this.tablet.Width = 50;
+            // 
+            // pcpos
+            // 
+            this.pcpos.FillWeight = 50F;
+            this.pcpos.HeaderText = "CodeiT Trg Dr";
+            this.pcpos.Name = "pcpos";
+            this.pcpos.Width = 50;
+            // 
+            // pccaffe
+            // 
+            this.pccaffe.FillWeight = 60F;
+            this.pccaffe.HeaderText = "CodeiT Ugo";
+            this.pccaffe.Name = "pccaffe";
+            this.pccaffe.Width = 60;
+            // 
+            // resort
+            // 
+            this.resort.FillWeight = 60F;
+            this.resort.HeaderText = "RESORT";
+            this.resort.Name = "resort";
+            this.resort.Visible = false;
+            this.resort.Width = 60;
+            // 
+            // pdv
+            // 
+            this.pdv.HeaderText = "pdv";
+            this.pdv.Name = "pdv";
+            this.pdv.Visible = false;
+            // 
             // frmOdrzavanja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,6 +471,7 @@
         private System.Windows.Forms.Label lblUkOd;
         private System.Windows.Forms.Label lblUkInt;
         private System.Windows.Forms.Button btnObrisi;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn sifra;
         private System.Windows.Forms.DataGridViewTextBoxColumn partner;
         private System.Windows.Forms.DataGridViewTextBoxColumn cijena_interneta;
@@ -480,6 +484,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn pccaffe;
         private System.Windows.Forms.DataGridViewTextBoxColumn resort;
         private System.Windows.Forms.DataGridViewTextBoxColumn pdv;
-        private System.Windows.Forms.Button button1;
     }
 }
