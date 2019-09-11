@@ -4,11 +4,7 @@
     <path_database path="C:\Users\DrazenPC\Desktop\PC POS\PC POS\bin\Debug\pc_pos_database.sdf" />
   </database_compact>
   <database_remote>
-<<<<<<< HEAD
     <postgree server="localhost" port="5432" username="postgres" database="lapaz2019" active="1" />
-=======
-    <postgree server="localhost" port="5432" username="postgres" database="rilTimeCodeITdb" active="1" />
->>>>>>> 64f15e28a68f5a975c0a0a47574d2bdd6ce1a35d
     <caffe server="localhost" port="5432" username="postgres" database="rossa2019" active="1" />
   </database_remote>
 </settings>
