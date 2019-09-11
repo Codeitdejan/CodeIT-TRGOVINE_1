@@ -827,6 +827,7 @@
             this.chbGodisnjeOdr.TabIndex = 9;
             this.chbGodisnjeOdr.Text = "Godišnje odr.";
             this.chbGodisnjeOdr.UseVisualStyleBackColor = true;
+            this.chbGodisnjeOdr.Visible = false;
             this.chbGodisnjeOdr.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
             // 
             // chbTrgDrustvo
@@ -839,6 +840,7 @@
             this.chbTrgDrustvo.TabIndex = 11;
             this.chbTrgDrustvo.Text = "Code-iT Trgovačko društvo";
             this.chbTrgDrustvo.UseVisualStyleBackColor = true;
+            this.chbTrgDrustvo.Visible = false;
             this.chbTrgDrustvo.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
             // 
             // chbBivsiKorisnik
@@ -851,6 +853,7 @@
             this.chbBivsiKorisnik.TabIndex = 8;
             this.chbBivsiKorisnik.Text = "Bivši korisnik";
             this.chbBivsiKorisnik.UseVisualStyleBackColor = true;
+            this.chbBivsiKorisnik.Visible = false;
             this.chbBivsiKorisnik.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
             // 
             // chbUgostiteljstvo
@@ -863,6 +866,7 @@
             this.chbUgostiteljstvo.TabIndex = 10;
             this.chbUgostiteljstvo.Text = "Code-iT Ugostiteljstvo";
             this.chbUgostiteljstvo.UseVisualStyleBackColor = true;
+            this.chbUgostiteljstvo.Visible = false;
             this.chbUgostiteljstvo.CheckedChanged += new System.EventHandler(this.chbBivsiKorisnik_CheckedChanged);
             // 
             // label21
@@ -874,6 +878,7 @@
             this.label21.Size = new System.Drawing.Size(91, 13);
             this.label21.TabIndex = 3;
             this.label21.Text = "Broj kasa u najmu";
+            this.label21.Visible = false;
             // 
             // label20
             // 
@@ -884,6 +889,7 @@
             this.label20.Size = new System.Drawing.Size(80, 13);
             this.label20.TabIndex = 1;
             this.label20.Text = "Broj održavanja";
+            this.label20.Visible = false;
             // 
             // nuBrojVipa
             // 
@@ -892,6 +898,7 @@
             this.nuBrojVipa.Name = "nuBrojVipa";
             this.nuBrojVipa.Size = new System.Drawing.Size(40, 20);
             this.nuBrojVipa.TabIndex = 4;
+            this.nuBrojVipa.Visible = false;
             this.nuBrojVipa.ValueChanged += new System.EventHandler(this.nuBrojVipa_ValueChanged);
             // 
             // nuBrojOdrzavanja
@@ -901,6 +908,7 @@
             this.nuBrojOdrzavanja.Name = "nuBrojOdrzavanja";
             this.nuBrojOdrzavanja.Size = new System.Drawing.Size(40, 20);
             this.nuBrojOdrzavanja.TabIndex = 2;
+            this.nuBrojOdrzavanja.Visible = false;
             this.nuBrojOdrzavanja.ValueChanged += new System.EventHandler(this.nuBrojOdrzavanja_ValueChanged);
             // 
             // chbUgovor
@@ -913,6 +921,7 @@
             this.chbUgovor.TabIndex = 6;
             this.chbUgovor.Text = "Ugovor";
             this.chbUgovor.UseVisualStyleBackColor = true;
+            this.chbUgovor.Visible = false;
             this.chbUgovor.CheckedChanged += new System.EventHandler(this.chbUgovor_CheckedChanged);
             // 
             // chbGodisnjaNaknada
@@ -925,6 +934,7 @@
             this.chbGodisnjaNaknada.TabIndex = 5;
             this.chbGodisnjaNaknada.Text = "Godišnja Naknada";
             this.chbGodisnjaNaknada.UseVisualStyleBackColor = true;
+            this.chbGodisnjaNaknada.Visible = false;
             this.chbGodisnjaNaknada.CheckedChanged += new System.EventHandler(this.chbWebUred_CheckedChanged);
             // 
             // chbKorisnikPrograma
@@ -937,6 +947,7 @@
             this.chbKorisnikPrograma.TabIndex = 7;
             this.chbKorisnikPrograma.Text = "Korisnik programa";
             this.chbKorisnikPrograma.UseVisualStyleBackColor = true;
+            this.chbKorisnikPrograma.Visible = false;
             this.chbKorisnikPrograma.CheckedChanged += new System.EventHandler(this.chbKorisnikPrograma_CheckedChanged);
             // 
             // label16

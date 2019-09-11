@@ -122,19 +122,15 @@ namespace PCPOS
             }
 
             string odrzavanje = "";
-            if (ini.Read("POSTAVKE", "odrzavanje") != "")
+            if (Class.Postavke.OIB_PC1 == "47165970760")
             {
-                odrzavanje = ini.Read("POSTAVKE", "odrzavanje");
-                if (odrzavanje == "1")
-                {
-                    održavanjeToolStripMenuItem.Visible = true;
-                    održavanjeProvjeraToolStripMenuItem.Visible = true;
-                }
-                else
-                {
-                    održavanjeToolStripMenuItem.Visible = false;
-                    održavanjeProvjeraToolStripMenuItem.Visible = false;
-                }
+                održavanjeToolStripMenuItem.Visible = true;
+                održavanjeProvjeraToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                održavanjeToolStripMenuItem.Visible = false;
+                održavanjeProvjeraToolStripMenuItem.Visible = false;
             }
 
             if (DTpostavke.Rows[0]["upozori_iskljucenu_fiskalizaciju"].ToString() == "1" && DTfis.Rows[0]["aktivna"].ToString() == "0")

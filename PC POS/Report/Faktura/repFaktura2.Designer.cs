@@ -168,6 +168,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Faktura ";
             this.Load += new System.EventHandler(this.repFaktura2_Load);
+            
             ((System.ComponentModel.ISupportInitialize)(this.dTRpodaciTvrtkeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dSRpodaciTvrtke)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dTfakturaStavkeBindingSource)).EndInit();
