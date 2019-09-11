@@ -171,18 +171,18 @@ namespace PCPOS.Odrzavanja
                 if (DSpar.Rows.Count > 0)
                 {
                     txtNazivPartnera.Text = DSpar.Rows[0][0].ToString();
-                    DataTable DTinternet = classSQL.select("SELECT * FROM roba WHERE sifra='INT-PRETPLATA'", "roba").Tables[0];
-                    DataTable DTodrzavanje = classSQL.select("SELECT * FROM roba WHERE sifra='PCP-ODRŽAVANJE'", "roba").Tables[0];
+                    DataTable DTodrzavanje = classSQL.select("SELECT * FROM roba WHERE sifra='CodeiT-odrzavanje'", "roba").Tables[0];
+                    DataTable DTnajam = classSQL.select("SELECT * FROM roba WHERE sifra='CodeiT-najam-a'", "roba").Tables[0];
 
-                    dgv.Rows.Add(txtSifraPartnera.Text, txtNazivPartnera.Text, DTodrzavanje.Rows[0]["mpc"].ToString(), 1, DTinternet.Rows[0]["mpc"].ToString(), 1);
+                    dgv.Rows.Add(txtSifraPartnera.Text, txtNazivPartnera.Text, DTnajam.Rows[0]["mpc"].ToString(), 0, DTodrzavanje.Rows[0]["mpc"].ToString(), 0,0,0,0,0,0);
+                    //dgv.Rows.Add(txtSifraPartnera.Text, txtNazivPartnera.Text,0, 0, 0, 0,0,0,0);
 
                     classSQL.insert("INSERT INTO partners_odrzavanje (id_partner,odrzavanje,odrzavanje_kol,internet,internet_kol) VALUES (" +
                         "'" + txtSifraPartnera.Text + "'," +
                         "'" + Convert.ToDecimal(DTodrzavanje.Rows[0]["mpc"].ToString()).ToString("#0.00").Replace(",", ".") + "'," +
-                        "'1'," +
-                        "'" + Convert.ToDecimal(DTinternet.Rows[0]["mpc"].ToString()).ToString("#0.00").Replace(",", ".") + "'," +
-                        "'1'" +
-                        ")");
+                        "'0'," +
+                        "'" + Convert.ToDecimal(DTnajam.Rows[0]["mpc"].ToString()).ToString("#0.00").Replace(",", ".") + "'," +
+                        "'0'" +")");
 
                     txtNazivPartnera.Text = "";
                     txtSifraPartnera.Text = "";
@@ -336,6 +336,23 @@ namespace PCPOS.Odrzavanja
                     for (int i = 0; i < brojevi_fak.Count; i++)
                     {
                         Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
+                        rfak.spremi = true;
+                        rfak.print = true;
+                        rfak.dokumenat = "FAK";
+                        rfak.racunajTecaj = false;
+                        rfak.ImeForme = "Fakture";
+                        rfak.naplatni = id_kasa;
+                        rfak.poslovnica = id_ducan;
+                        rfak.broj_dokumenta = brojevi_fak[i];
+                        rfak.ShowDialog();
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < brojevi_fak.Count; i++)
+                    {
+                        Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
+                        rfak.spremi = true;
                         rfak.dokumenat = "FAK";
                         rfak.racunajTecaj = false;
                         rfak.ImeForme = "Fakture";
@@ -346,6 +363,7 @@ namespace PCPOS.Odrzavanja
                     }
                 }
             }
+            MessageBox.Show("Izvršeno!");
         }
 
         private string brojFakture()
@@ -368,162 +386,139 @@ namespace PCPOS.Odrzavanja
             DataTable DTinternet = classSQL.select("SELECT * FROM roba WHERE sifra='CodeiT-odrzavanje'", "roba").Tables[0];
             DataTable DTweb_ured = classSQL.select("SELECT * FROM roba WHERE sifra='CodeiT-najam-a'", "roba").Tables[0];
             decimal pdv = Convert.ToDecimal(DTinternet.Rows[0]["porez"].ToString());
-
+            DateTime datum_sad = DateTime.Now;
             for (int i = 0; i < dgv.RowCount; i++)
             {
-                DateTime datum_sad = DateTime.Now;
-                decimal kolicina_internet = Convert.ToDecimal(dgv.Rows[i].Cells["internet_kolicina"].FormattedValue.ToString());
-                decimal kolicina_odrzavanje = Convert.ToDecimal(dgv.Rows[i].Cells["kolicina_odrzavanje"].FormattedValue.ToString());
-                decimal cijena_interneta = Convert.ToDecimal(dgv.Rows[i].Cells["cijena_interneta"].FormattedValue.ToString());
-                decimal cijena_odrzavanje = Convert.ToDecimal(dgv.Rows[i].Cells["cijena_odrzavanje"].FormattedValue.ToString());
-                decimal PreracunataStopaPDV = (100 * pdv) / (100 + pdv);
-                decimal cijena_internet_vpc = cijena_interneta - ((cijena_interneta * PreracunataStopaPDV) / 100);
-                decimal cijena_odrzavanje_vpc = cijena_odrzavanje - ((cijena_odrzavanje * PreracunataStopaPDV) / 100);
-
-                decimal cijena_web_ureda = 0;
-                decimal kol_web_ureda = 0;
-                decimal.TryParse(DTweb_ured.Rows[0]["mpc"].ToString(), out cijena_web_ureda);
-                decimal.TryParse(dgv.Rows[i].Cells["web_ured"].FormattedValue.ToString(), out kol_web_ureda);
-
-                decimal ukupno = (cijena_interneta * kolicina_internet) + (kolicina_odrzavanje * cijena_odrzavanje) + (cijena_web_ureda * kol_web_ureda);
-
-                if (ukupno > 0)
+                if (dgv.Rows[i].Cells["nova_godina"].Value.ToString() == "0")
                 {
-                    string broj_fakture = brojFakture();
-                    brojevi_fak.Add(broj_fakture);
+                    decimal kolicina_kasa = Convert.ToDecimal(dgv.Rows[i].Cells["internet_kolicina"].FormattedValue.ToString());
+                    decimal kolicina_odrzavanje = Convert.ToDecimal(dgv.Rows[i].Cells["kolicina_odrzavanje"].FormattedValue.ToString());
+                    decimal cijena_kasa = Convert.ToDecimal(dgv.Rows[i].Cells["cijena_interneta"].FormattedValue.ToString());
+                    decimal cijena_odrzavanje = Convert.ToDecimal(dgv.Rows[i].Cells["cijena_odrzavanje"].FormattedValue.ToString());
+                    int codeitUgo = int.Parse(dgv.Rows[i].Cells["pccaffe"].Value.ToString());
+                    int codeitTRGDR = int.Parse(dgv.Rows[i].Cells["pcpos"].Value.ToString());
+                    int nova_godina = int.Parse(dgv.Rows[i].Cells["nova_godina"].Value.ToString());
 
-                    string sql = "INSERT INTO fakture (broj_fakture,id_odrediste,id_fakturirati,date," +
-                        "dateDVO,datum_valute,id_izjava,id_zaposlenik,id_zaposlenik_izradio,model" +
-                        ",id_nacin_placanja,zr,id_valuta,otprema,id_predujam,napomena,id_vd,godina_predujma," +
-                        "godina_ponude,godina_fakture,oduzmi_iz_skladista,tecaj,ukupno,storno," +
-                        "ukupno_povratna_naknada,ukupno_mpc,ukupno_vpc,ukupno_mpc_rabat,ukupno_rabat,ukupno_osnovica,ukupno_porez,id_ducan,id_kasa,stavke_u_valuti)" +
-                        " VALUES " +
-                        " (" +
-                         " '" + broj_fakture + "'," +
-                        " '" + dgv.Rows[i].Cells["sifra"].FormattedValue.ToString() + "'," +
-                        " '" + dgv.Rows[i].Cells["sifra"].FormattedValue.ToString() + "'," +
-                        " '" + datum_sad.ToString("yyyy-MM-dd") + "'," +
-                        " '" + datum_sad.ToString("yyyy-MM-dd") + "'," +
-                        " '" + datum_sad.AddDays(10).ToString("yyyy-MM-dd") + "'," +
-                        " '0'," +
-                        " '" + Properties.Settings.Default.id_zaposlenik + "'," +
-                        " '" + Properties.Settings.Default.id_zaposlenik + "'," +
-                        " ''," +
-                        " '3'," +
-                        " '1'," +
-                        " '5'," +
-                        " '1'," +
-                        " '0'," +
-                        " 'Plačanje za održavanje za " + DateTime.Now.Month.ToString() + " mjesec.'," +
-                        " 'IFA'," +
-                        " '" + DateTime.Now.Year.ToString() + "'," +
-                        " '" + DateTime.Now.Year.ToString() + "'," +
-                        " '" + DateTime.Now.Year.ToString() + "'," +
-                        " '1'," +
-                        " '1'," +
-                        "'" + ukupno.ToString("0.00").Replace(".", ",") + "'," +
-                        " 'NE'," +
-                        "'0'," +
-                        "'" + ukupno.ToString("0.00").Replace(",", ".") + "'," +
-                        "'" + (ukupno - ((ukupno * PreracunataStopaPDV) / 100)).ToString().Replace(",", ".") + "'," +
-                        "'0'," +
-                        "'0'," +
-                        "'" + (ukupno - ((ukupno * PreracunataStopaPDV) / 100)).ToString().Replace(",", ".") + "'," +
-                        "'" + ((ukupno * PreracunataStopaPDV) / 100).ToString().Replace(",", ".") + "'," +
-                        "'" + id_ducan + "','" + id_kasa + "','0')";
-                    classSQL.insert(sql);
+                    decimal PreracunataStopaPDV = (100 * pdv) / (100 + pdv);
+                    decimal cijena_internet_vpc = cijena_kasa - ((cijena_kasa * PreracunataStopaPDV) / 100);
+                    decimal cijena_odrzavanje_vpc = cijena_odrzavanje - ((cijena_odrzavanje * PreracunataStopaPDV) / 100);
 
-                    if ((cijena_interneta * kolicina_internet) > 0)
+                    decimal cijena_web_ureda = 0;
+                    decimal kol_web_ureda = 0;
+                    decimal.TryParse(DTweb_ured.Rows[0]["mpc"].ToString(), out cijena_web_ureda);
+                    decimal.TryParse(dgv.Rows[i].Cells["web_ured"].FormattedValue.ToString(), out kol_web_ureda);
+
+                    decimal ukupno = (cijena_kasa * kolicina_kasa + (kolicina_odrzavanje * cijena_odrzavanje)) + (cijena_web_ureda * kol_web_ureda);
+
+                    if (ukupno > 0)
                     {
-                        sql = "INSERT INTO faktura_stavke (kolicina,vpc,porez,broj_fakture,rabat,id_skladiste,sifra,oduzmi,odjava,nbc,porez_potrosnja,povratna_naknada,rabat_izn,mpc_rabat" +
-                            ",ukupno_rabat,ukupno_vpc,ukupno_mpc,ukupno_mpc_rabat,povratna_naknada_izn,ukupno_porez,ukupno_osnovica,id_ducan,id_kasa) VALUES (" +
-                            "'" + kolicina_internet.ToString().Replace(",", ".") + "'," +
-                            "'" + cijena_internet_vpc.ToString().Replace(",", ".") + "'," +
-                            "'" + pdv.ToString().Replace(",", ".") + "'," +
-                            "'" + broj_fakture + "'," +
-                            "'0'," +
-                            "'17'," +
-                            "'INT-PRETPLATA'," +
-                            "'NE'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'" + (kolicina_internet * cijena_internet_vpc).ToString().Replace(",", ".") + "'," +
-                            "'" + (kolicina_internet * cijena_interneta).ToString().Replace(",", ".") + "'," +
-                            "'0'," +
-                            "'0'," +
-                            "'" + ((kolicina_internet * cijena_interneta) - (kolicina_internet * cijena_internet_vpc)).ToString().Replace(",", ".") + "'," +
-                            "'" + (kolicina_internet * cijena_internet_vpc).ToString().Replace(",", ".") + "'," +
-                            "'" + id_ducan + "','" + id_kasa + "'" +
-                            ")";
+                        string broj_fakture = brojFakture();
+                        brojevi_fak.Add(broj_fakture);
 
+                        string sql = "INSERT INTO fakture (broj_fakture,id_odrediste,id_fakturirati,date," +
+                            "dateDVO,datum_valute,id_izjava,id_zaposlenik,id_zaposlenik_izradio,model" +
+                            ",id_nacin_placanja,zr,id_valuta,otprema,id_predujam,napomena,id_vd,godina_predujma," +
+                            "godina_ponude,godina_fakture,oduzmi_iz_skladista,tecaj,ukupno,storno," +
+                            "ukupno_povratna_naknada,ukupno_mpc,ukupno_vpc,ukupno_mpc_rabat,ukupno_rabat,ukupno_osnovica,ukupno_porez,id_ducan,id_kasa,stavke_u_valuti)" +
+                            " VALUES " +
+                            " (" +
+                             " '" + broj_fakture + "'," +
+                            " '" + dgv.Rows[i].Cells["sifra"].FormattedValue.ToString() + "'," +
+                            " '" + dgv.Rows[i].Cells["sifra"].FormattedValue.ToString() + "'," +
+                            " '" + datum_sad.ToString("yyyy-MM-dd") + "'," +
+                            " '" + datum_sad.ToString("yyyy-MM-dd") + "'," +
+                            " '" + datum_sad.AddDays(10).ToString("yyyy-MM-dd") + "'," +
+                            " '0'," +
+                            " '" + Properties.Settings.Default.id_zaposlenik + "'," +
+                            " '" + Properties.Settings.Default.id_zaposlenik + "'," +
+                            " ''," +
+                            " '3'," +
+                            " '1'," +
+                            " '5'," +
+                            " '1'," +
+                            " '0'," +
+                            " 'Plačanje za održavanje za " + DateTime.Now.Month.ToString() + " mjesec.'," +
+                            " 'IFA'," +
+                            " '" + DateTime.Now.Year.ToString() + "'," +
+                            " '" + DateTime.Now.Year.ToString() + "'," +
+                            " '" + DateTime.Now.Year.ToString() + "'," +
+                            " '1'," +
+                            " '1'," +
+                            "'" + ukupno.ToString("0.00").Replace(".", ",") + "'," +
+                            " 'NE'," +
+                            "'0'," +
+                            "'" + ukupno.ToString("0.00").Replace(",", ".") + "'," +
+                            "'" + (ukupno - ((ukupno * PreracunataStopaPDV) / 100)).ToString().Replace(",", ".") + "'," +
+                            "'0'," +
+                            "'0'," +
+                            "'" + (ukupno - ((ukupno * PreracunataStopaPDV) / 100)).ToString().Replace(",", ".") + "'," +
+                            "'" + ((ukupno * PreracunataStopaPDV) / 100).ToString().Replace(",", ".") + "'," +
+                            "'" + id_ducan + "','" + id_kasa + "','0')";
                         classSQL.insert(sql);
-                    }
 
-                    if ((cijena_web_ureda * kol_web_ureda) > 0)
-                    {
-                        sql = "INSERT INTO faktura_stavke (kolicina,vpc,porez,broj_fakture,rabat,id_skladiste,sifra,oduzmi,odjava,nbc,porez_potrosnja,povratna_naknada,rabat_izn,mpc_rabat" +
-                            ",ukupno_rabat,ukupno_vpc,ukupno_mpc,ukupno_mpc_rabat,povratna_naknada_izn,ukupno_porez,ukupno_osnovica,id_ducan,id_kasa) VALUES (" +
-                            "'" + kol_web_ureda.ToString().Replace(",", ".") + "'," +
-                            "'" + (cijena_web_ureda / (1 + (pdv / 100))).ToString().Replace(",", ".") + "'," +
-                            "'" + pdv.ToString().Replace(",", ".") + "'," +
-                            "'" + broj_fakture + "'," +
-                            "'0'," +
-                            "'17'," +
-                            "'CodeiT-najam-a'," +
-                            "'NE'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'" + (kol_web_ureda * (cijena_web_ureda / (1 + (pdv / 100)))).ToString().Replace(",", ".") + "'," +
-                            "'" + (cijena_web_ureda * kol_web_ureda).ToString().Replace(",", ".") + "'," +
-                            "'0'," +
-                            "'0'," +
-                            "'" + ((kol_web_ureda * (cijena_web_ureda)) - (kol_web_ureda * (cijena_web_ureda / (1 + (pdv / 100))))).ToString().Replace(",", ".") + "'," +
-                            "'" + (kol_web_ureda * (cijena_web_ureda / (1 + (pdv / 100)))).ToString().Replace(",", ".") + "'," +
-                            "'" + id_ducan + "','" + id_kasa + "'" +
-                            ")";
-
+                        sql = "UPDATE partners_odrzavanje SET odrzavanje='"+cijena_odrzavanje+"', odrzavanje_kol='"+kolicina_odrzavanje+"',internet='"+cijena_kasa+"', internet_kol='"+kolicina_kasa+"', nas_program='1',pcpos='"+codeitTRGDR+"',pccaffe='"+codeitUgo+"' WHERE id_partner='"+ dgv.Rows[i].Cells["sifra"].FormattedValue.ToString() + "'";
                         classSQL.insert(sql);
-                    }
+                        if (kolicina_kasa > 0)
+                        {
+                            sql = "INSERT INTO faktura_stavke (kolicina,vpc,porez,broj_fakture,rabat,id_skladiste,sifra,oduzmi,odjava,nbc,porez_potrosnja,povratna_naknada,rabat_izn,mpc_rabat" +
+                                ",ukupno_rabat,ukupno_vpc,ukupno_mpc,ukupno_mpc_rabat,povratna_naknada_izn,ukupno_porez,ukupno_osnovica,id_ducan,id_kasa) VALUES (" +
+                                "'" + kolicina_kasa + "'," +
+                                "'" + (cijena_kasa / (1 + (pdv / 100))).ToString().Replace(",", ".") + "'," +
+                                "'" + pdv.ToString().Replace(",", ".") + "'," +
+                                "'" + broj_fakture + "'," +
+                                "'0'," +
+                                "'17'," +
+                                "'CodeiT-najam-a'," +
+                                "'NE'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'" + (kolicina_kasa * (cijena_kasa / (1 + (pdv / 100)))).ToString().Replace(",", ".") + "'," +
+                                "'" + (cijena_kasa * kolicina_kasa).ToString().Replace(",", ".") + "'," +
+                                "'0'," +
+                                "'0'," +
+                                "'" + ((kolicina_kasa * (cijena_kasa)) - (kolicina_kasa * (cijena_kasa / (1 + (pdv / 100))))).ToString().Replace(",", ".") + "'," +
+                                "'" + (kolicina_kasa * (cijena_kasa / (1 + (pdv / 100)))).ToString().Replace(",", ".") + "'," +
+                                "'" + id_ducan + "','" + id_kasa + "'" +
+                                ")";
 
-                    if ((cijena_odrzavanje * kolicina_odrzavanje) > 0)
-                    {
-                        sql = "INSERT INTO faktura_stavke (kolicina,vpc,porez,broj_fakture,rabat,id_skladiste,sifra,oduzmi,odjava,nbc,porez_potrosnja,povratna_naknada,rabat_izn,mpc_rabat" +
-                            ",ukupno_rabat,ukupno_vpc,ukupno_mpc,ukupno_mpc_rabat,povratna_naknada_izn,ukupno_porez,ukupno_osnovica,id_ducan,id_kasa) VALUES (" +
-                            "'" + kolicina_odrzavanje.ToString().Replace(",", ".") + "'," +
-                            "'" + cijena_odrzavanje_vpc.ToString().Replace(",", ".") + "'," +
-                            "'" + pdv.ToString().Replace(",", ".") + "'," +
-                            "'" + broj_fakture + "'," +
-                            "'0'," +
-                            "'17'," +
-                            "'CodeiT-odrzavanje'," +
-                            "'NE'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'0'," +
-                            "'" + (kolicina_odrzavanje * cijena_odrzavanje_vpc).ToString().Replace(",", ".") + "'," +
-                            "'" + (kolicina_odrzavanje * cijena_odrzavanje).ToString().Replace(",", ".") + "'," +
-                            "'0'," +
-                            "'0'," +
-                            "'" + ((kolicina_odrzavanje * cijena_odrzavanje) - (kolicina_odrzavanje * cijena_odrzavanje_vpc)).ToString().Replace(",", ".") + "'," +
-                            "'" + (cijena_odrzavanje_vpc * kolicina_odrzavanje).ToString().Replace(",", ".") + "'," +
-                            "'" + id_ducan + "','" + id_kasa + "'" +
-                            ")";
+                            classSQL.insert(sql);
+                        }
 
-                        classSQL.insert(sql);
+                        if (kolicina_odrzavanje > 0)
+                        {
+                            sql = "INSERT INTO faktura_stavke (kolicina,vpc,porez,broj_fakture,rabat,id_skladiste,sifra,oduzmi,odjava,nbc,porez_potrosnja,povratna_naknada,rabat_izn,mpc_rabat" +
+                                ",ukupno_rabat,ukupno_vpc,ukupno_mpc,ukupno_mpc_rabat,povratna_naknada_izn,ukupno_porez,ukupno_osnovica,id_ducan,id_kasa) VALUES (" +
+                                "'" + kolicina_odrzavanje.ToString().Replace(",", ".") + "'," +
+                                "'" + cijena_odrzavanje_vpc.ToString().Replace(",", ".") + "'," +
+                                "'" + pdv.ToString().Replace(",", ".") + "'," +
+                                "'" + broj_fakture + "'," +
+                                "'0'," +
+                                "'17'," +
+                                "'CodeiT-odrzavanje'," +
+                                "'NE'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'0'," +
+                                "'" + (kolicina_odrzavanje * cijena_odrzavanje_vpc).ToString().Replace(",", ".") + "'," +
+                                "'" + (kolicina_odrzavanje * cijena_odrzavanje).ToString().Replace(",", ".") + "'," +
+                                "'0'," +
+                                "'0'," +
+                                "'" + ((kolicina_odrzavanje * cijena_odrzavanje) - (kolicina_odrzavanje * cijena_odrzavanje_vpc)).ToString().Replace(",", ".") + "'," +
+                                "'" + (cijena_odrzavanje_vpc * kolicina_odrzavanje).ToString().Replace(",", ".") + "'," +
+                                "'" + id_ducan + "','" + id_kasa + "'" +
+                                ")";
+
+                            classSQL.insert(sql);
+                        }
                     }
                 }
             }
@@ -543,5 +538,144 @@ namespace PCPOS.Odrzavanja
         {
             this.Close();
         }
+
+        #region generirajGodisnjuFakturu
+
+        private void GenerirajGodisnjuFakturu()
+        {
+            DataTable DTgodisnjeodrzavanje = classSQL.select("SELECT * FROM roba WHERE sifra='CodeiT-g/odr'", "roba").Tables[0];
+            decimal pdv = Convert.ToDecimal(DTgodisnjeodrzavanje.Rows[0]["porez"].ToString());
+            DateTime datum_sad = DateTime.Now;
+            for (int i = 0; i < dgv.RowCount; i++)
+            {
+                if (dgv.Rows[i].Cells["nova_godina"].Value.ToString() == "1")
+                {
+                    /*
+                    decimal kolicina_kasa = Convert.ToDecimal(dgv.Rows[i].Cells["internet_kolicina"].FormattedValue.ToString());
+                    decimal kolicina_odrzavanje = Convert.ToDecimal(dgv.Rows[i].Cells["kolicina_odrzavanje"].FormattedValue.ToString());
+                    decimal cijena_kasa = Convert.ToDecimal(dgv.Rows[i].Cells["cijena_interneta"].FormattedValue.ToString());
+                    decimal cijena_odrzavanje = Convert.ToDecimal(dgv.Rows[i].Cells["cijena_odrzavanje"].FormattedValue.ToString());
+                    decimal PreracunataStopaPDV = (100 * pdv) / (100 + pdv);
+                    decimal cijena_internet_vpc = cijena_kasa - ((cijena_kasa * PreracunataStopaPDV) / 100);
+                    decimal cijena_odrzavanje_vpc = cijena_odrzavanje - ((cijena_odrzavanje * PreracunataStopaPDV) / 100);
+                    */
+                        string broj_fakture = brojFakture();
+                        brojevi_fak.Add(broj_fakture);
+
+                        string sql = "INSERT INTO fakture (broj_fakture,id_odrediste,id_fakturirati,date," +
+                            "dateDVO,datum_valute,id_izjava,id_zaposlenik,id_zaposlenik_izradio,model" +
+                            ",id_nacin_placanja,zr,id_valuta,otprema,id_predujam,napomena,id_vd,godina_predujma," +
+                            "godina_ponude,godina_fakture,oduzmi_iz_skladista,tecaj,ukupno,storno," +
+                            "ukupno_povratna_naknada,ukupno_mpc,ukupno_vpc,ukupno_mpc_rabat,ukupno_rabat,ukupno_osnovica,ukupno_porez,id_ducan,id_kasa,stavke_u_valuti)" +
+                            " VALUES " +
+                            " (" +
+                             " '" + broj_fakture + "'," +
+                            " '" + dgv.Rows[i].Cells["sifra"].FormattedValue.ToString() + "'," +
+                            " '" + dgv.Rows[i].Cells["sifra"].FormattedValue.ToString() + "'," +
+                            " '" + datum_sad.ToString("yyyy-MM-dd") + "'," +
+                            " '" + datum_sad.ToString("yyyy-MM-dd") + "'," +
+                            " '" + datum_sad.AddDays(10).ToString("yyyy-MM-dd") + "'," +
+                            " '0'," +
+                            " '" + Properties.Settings.Default.id_zaposlenik + "'," +
+                            " '" + Properties.Settings.Default.id_zaposlenik + "'," +
+                            " ''," +
+                            " '3'," +
+                            " '1'," +
+                            " '5'," +
+                            " '1'," +
+                            " '0'," +
+                            " 'Plačanje godišnjeg održavanja za " + DateTime.Now.Year.ToString() + " godinu.'," +
+                            " 'IFA'," +
+                            " '" + DateTime.Now.Year.ToString() + "'," +
+                            " '" + DateTime.Now.Year.ToString() + "'," +
+                            " '" + DateTime.Now.Year.ToString() + "'," +
+                            " '1'," +
+                            " '1'," +
+                            "'" + DTgodisnjeodrzavanje.Rows[0]["mpc"].ToString().Replace(",",".") + "'," +
+                            " 'NE'," +
+                            "'0'," +
+                            "'" + DTgodisnjeodrzavanje.Rows[0]["mpc"].ToString().Replace(",",".") + "'," +
+                            "'" + DTgodisnjeodrzavanje.Rows[0]["vpc"].ToString().Replace(",", ".") + "'," +
+                            "'0'," +
+                            "'0'," +
+                            "'" + DTgodisnjeodrzavanje.Rows[0]["vpc"].ToString().Replace(",", ".") + "'," +
+                            "'" + DTgodisnjeodrzavanje.Rows[0]["vpc"].ToString().Replace(",", ".") + "'," +
+                            "'" + id_ducan + "','" + id_kasa + "','0')";
+                        classSQL.insert(sql);
+
+                    sql = "UPDATE partners_odrzavanje SET nova_godina='1' WHERE id_partner='" + dgv.Rows[i].Cells["sifra"].FormattedValue.ToString() + "'";
+                    classSQL.insert(sql);
+
+                    sql = "INSERT INTO faktura_stavke (kolicina,vpc,porez,broj_fakture,rabat,id_skladiste,sifra,oduzmi,odjava,nbc,porez_potrosnja,povratna_naknada,rabat_izn,mpc_rabat" +
+                              ",ukupno_rabat,ukupno_vpc,ukupno_mpc,ukupno_mpc_rabat,povratna_naknada_izn,ukupno_porez,ukupno_osnovica,id_ducan,id_kasa) VALUES (" +
+                              "'1'," +
+                              "'" + DTgodisnjeodrzavanje.Rows[0]["vpc"].ToString().Replace(",", ".") + "'," +
+                              "'" + pdv.ToString().Replace(",", ".") + "'," +
+                              "'" + broj_fakture + "'," +
+                              "'0'," +
+                              "'17'," +
+                              "'CodeiT-g/odr'," +
+                              "'NE'," +
+                              "'0'," +
+                              "'0'," +
+                              "'0'," +
+                              "'0'," +
+                              "'0'," +
+                              "'0'," +
+                              "'0'," +
+                              "'" + DTgodisnjeodrzavanje.Rows[0]["vpc"].ToString().Replace(",", ".") + "'," +
+                              "'" + DTgodisnjeodrzavanje.Rows[0]["mpc"].ToString().Replace(",", ".") + "'," +
+                              "'0'," +
+                              "'0'," +
+                              "'" + DTgodisnjeodrzavanje.Rows[0]["mpc"].ToString().Replace(",", ".") + "'," +
+                              "'" + DTgodisnjeodrzavanje.Rows[0]["mpc"].ToString().Replace(",", ".") + "'," +
+                              "'" + id_ducan + "','" + id_kasa + "'" + ")";
+                          classSQL.insert(sql); 
+                }
+            }
+}
+
+
+        private void buttonGeneriraGodisnjeFakture_Click(object sender, EventArgs e)
+        {
+            GenerirajGodisnjuFakturu();
+
+            if (brojevi_fak.Count > 0)
+            {
+                if (MessageBox.Show("\r\nGenerirane su fakture od broja " + brojevi_fak[0] + " do broja " + brojevi_fak[brojevi_fak.Count - 1] + ".\n Želite li ispisati iste?", "Generirano!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    for (int i = 0; i < brojevi_fak.Count; i++)
+                    {
+                        Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
+                        rfak.godisnje = true;
+                        rfak.print = true;
+                        rfak.dokumenat = "FAK";
+                        rfak.racunajTecaj = false;
+                        rfak.ImeForme = "Fakture";
+                        rfak.naplatni = id_kasa;
+                        rfak.poslovnica = id_ducan;
+                        rfak.broj_dokumenta = brojevi_fak[i];
+                        rfak.ShowDialog();
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < brojevi_fak.Count; i++)
+                    {
+                        Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
+                        rfak.godisnje = true;
+                        rfak.dokumenat = "FAK";
+                        rfak.racunajTecaj = false;
+                        rfak.ImeForme = "Fakture";
+                        rfak.naplatni = id_kasa;
+                        rfak.poslovnica = id_ducan;
+                        rfak.broj_dokumenta = brojevi_fak[i];
+                        rfak.ShowDialog();
+                    }
+                }
+            }
+            MessageBox.Show("Izvršeno!");
+        }
+        #endregion
     }
 }
