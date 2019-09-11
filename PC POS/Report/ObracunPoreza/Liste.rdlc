@@ -2327,8 +2327,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox446</rd:DefaultName>
-            <Top>1.30482cm</Top>
-            <Left>0.32149cm</Left>
+            <Top>1.36733cm</Top>
+            <Left>0.62526cm</Left>
             <Height>0.56544cm</Height>
             <Width>3.11943cm</Width>
             <Style>
@@ -2348,7 +2348,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>-   RABAT:</Value>
+                    <Value>RABAT:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -2360,45 +2360,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox446</rd:DefaultName>
-            <Top>2.04665cm</Top>
-            <Left>0.32149cm</Left>
+            <Top>2.85099cm</Top>
+            <Left>0.62526cm</Left>
             <Height>0.56544cm</Height>
             <Width>3.11943cm</Width>
             <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox460">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>TOTAL:</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Center</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox446</rd:DefaultName>
-            <Top>2.78848cm</Top>
-            <Left>0.32149cm</Left>
-            <Height>0.56544cm</Height>
-            <Width>3.11943cm</Width>
-            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2428,11 +2394,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox446</rd:DefaultName>
-            <Top>3.53031cm</Top>
-            <Left>0.32149cm</Left>
+            <Top>4.33465cm</Top>
+            <Left>0.62526cm</Left>
             <Height>0.56544cm</Height>
             <Width>3.11943cm</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2462,11 +2428,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox446</rd:DefaultName>
-            <Top>4.27214cm</Top>
-            <Left>0.32149cm</Left>
+            <Top>5.07648cm</Top>
+            <Left>0.62526cm</Left>
             <Height>0.56544cm</Height>
             <Width>3.11943cm</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2496,11 +2462,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox446</rd:DefaultName>
-            <Top>5.01397cm</Top>
-            <Left>0.32149cm</Left>
+            <Top>5.81831cm</Top>
+            <Left>0.62526cm</Left>
             <Height>0.56544cm</Height>
             <Width>3.11943cm</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2530,11 +2496,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox446</rd:DefaultName>
-            <Top>0.37878cm</Top>
-            <Left>5.91233cm</Left>
+            <Top>0.33867cm</Top>
+            <Left>3.31384cm</Left>
             <Height>0.56544cm</Height>
             <Width>1.48627cm</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2552,7 +2518,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Por. rabata:</Value>
+                    <Value>PDV rabata:</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -2564,11 +2530,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox446</rd:DefaultName>
-            <Top>1.30482cm</Top>
-            <Left>7.59602cm</Left>
+            <Top>3.59282cm</Top>
+            <Left>0.62526cm</Left>
             <Height>0.56544cm</Height>
-            <Width>2.13264cm</Width>
-            <ZIndex>7</ZIndex>
+            <Width>3.11943cm</Width>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2599,11 +2565,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>1.43498cm</Top>
-            <Left>5.91233cm</Left>
-            <Height>0.4cm</Height>
+            <Top>1.36733cm</Top>
+            <Left>5.65209cm</Left>
+            <Height>0.53016cm</Height>
             <Width>1.48627cm</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2622,7 +2588,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!rabat.Value, "DataSet6")</Value>
+                    <Value>=Sum(Fields!rabat.Value, "DataSet4") + Sum(Fields!rabat.Value, "DataSet5")</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -2635,11 +2601,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>2.21209cm</Top>
-            <Left>5.91233cm</Left>
-            <Height>0.4cm</Height>
+            <Top>2.85099cm</Top>
+            <Left>5.65209cm</Left>
+            <Height>0.56544cm</Height>
             <Width>1.48627cm</Width>
-            <ZIndex>9</ZIndex>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2658,7 +2624,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!pdvrabata.Value, "DataSet6")</Value>
+                    <Value>=Sum(Fields!pdvrabat.Value, "DataSet4") + Sum(Fields!pdvrabata.Value, "DataSet5")</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -2671,47 +2637,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>2.21209cm</Top>
-            <Left>7.95353cm</Left>
-            <Height>0.4cm</Height>
+            <Top>3.59282cm</Top>
+            <Left>5.65209cm</Left>
+            <Height>0.56544cm</Height>
             <Width>1.48627cm</Width>
-            <ZIndex>10</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <VerticalAlign>Middle</VerticalAlign>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox55">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Sum(Fields!osnovica.Value, "DataSet6")</Value>
-                    <Style>
-                      <FontSize>8pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style>
-                  <TextAlign>Right</TextAlign>
-                </Style>
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>2.95392cm</Top>
-            <Left>5.91233cm</Left>
-            <Height>0.4cm</Height>
-            <Width>1.48627cm</Width>
-            <ZIndex>11</ZIndex>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2730,7 +2660,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!povrnak.Value, "DataSet6")</Value>
+                    <Value>=Sum(Fields!povrnakn.Value, "DataSet4") + Sum(Fields!povrnak.Value, "DataSet5")</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -2743,11 +2673,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>3.69575cm</Top>
-            <Left>5.91233cm</Left>
-            <Height>0.4cm</Height>
+            <Top>4.33465cm</Top>
+            <Left>5.65209cm</Left>
+            <Height>0.56544cm</Height>
             <Width>1.48627cm</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2766,7 +2696,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!osnovica.Value, "DataSet6")</Value>
+                    <Value>=Sum(Fields!osnovica.Value, "DataSet4") + Sum(Fields!osnovica.Value, "DataSet5")</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -2779,11 +2709,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>4.43758cm</Top>
-            <Left>5.91233cm</Left>
-            <Height>0.4cm</Height>
+            <Top>5.07648cm</Top>
+            <Left>5.65209cm</Left>
+            <Height>0.56544cm</Height>
             <Width>1.48627cm</Width>
-            <ZIndex>13</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2802,7 +2732,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!iznbezpor.Value, "DataSet6")</Value>
+                    <Value>=Sum(Fields!iznbezpor.Value, "DataSet4") + Sum(Fields!iznbezporeza.Value, "DataSet5")</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
@@ -2815,9 +2745,79 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
-            <Top>5.17941cm</Top>
-            <Left>5.91233cm</Left>
-            <Height>0.4cm</Height>
+            <Top>5.81831cm</Top>
+            <Left>5.65209cm</Left>
+            <Height>0.56544cm</Height>
+            <Width>1.48627cm</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox463">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>PDV</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox446</rd:DefaultName>
+            <Top>2.10916cm</Top>
+            <Left>0.62526cm</Left>
+            <Height>0.56544cm</Height>
+            <Width>3.11943cm</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox58">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!pdv.Value, "DataSet4") + Sum(Fields!pdv.Value, "DataSet5")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox13</rd:DefaultName>
+            <Top>2.10916cm</Top>
+            <Left>5.65209cm</Left>
+            <Height>0.53016cm</Height>
             <Width>1.48627cm</Width>
             <ZIndex>14</ZIndex>
             <Style>
@@ -2833,10 +2833,10 @@
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>11.22865cm</Top>
-        <Left>9.53544cm</Left>
-        <Height>6.02268cm</Height>
-        <Width>9.89893cm</Width>
+        <Top>10.92842cm</Top>
+        <Left>11.29378cm</Left>
+        <Height>6.95402cm</Height>
+        <Width>7.6976cm</Width>
         <ZIndex>9</ZIndex>
         <Style>
           <Border>
@@ -3865,7 +3865,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>7.04217in</Height>
+    <Height>7.25884in</Height>
     <Style />
   </Body>
   <Width>20.05114cm</Width>
