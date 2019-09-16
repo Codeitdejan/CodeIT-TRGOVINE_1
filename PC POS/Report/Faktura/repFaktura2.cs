@@ -54,27 +54,27 @@ namespace PCPOS.Report.Faktura
             if (spremi && print)
             {             
                 SpremiPdf("CodeITFaktura - "+ nazivDokumenta, reportViewer2);
-                printPdf("CodeITFaktura - " + nazivDokumenta);
-                PosaljiEmail("CodeITFaktura - " + nazivDokumenta);
+                //printPdf("CodeITFaktura - " + nazivDokumenta);
+                //PosaljiEmail("CodeITFaktura - " + nazivDokumenta);
                 this.Close();
             }
             else if(spremi)
             {
                 SpremiPdf("CodeITFaktura - " + nazivDokumenta, reportViewer2);
-                PosaljiEmail("CodeITFaktura - " + nazivDokumenta);
+                //PosaljiEmail("CodeITFaktura - " + nazivDokumenta);
                 this.Close();
             }
             else if (godisnje && print)
             {
                 SpremiGodisnjiPdf("CodeITFaktura - " + nazivDokumenta, reportViewer2);
-                printGodisnjiPdf("CodeITFaktura - " + nazivDokumenta);
-                PosaljiGodisnjiEmail("CodeITFaktura - " + nazivDokumenta);
+                //printGodisnjiPdf("CodeITFaktura - " + nazivDokumenta);
+                //PosaljiGodisnjiEmail("CodeITFaktura - " + nazivDokumenta);
                 this.Close();
             }
             else if (godisnje)
             {
                 SpremiGodisnjiPdf("CodeITFaktura - " + nazivDokumenta, reportViewer2);
-                PosaljiGodisnjiEmail("CodeITFaktura - " + nazivDokumenta);
+                //PosaljiGodisnjiEmail("CodeITFaktura - " + nazivDokumenta);
                 this.Close();
             }
         }
@@ -150,7 +150,6 @@ namespace PCPOS.Report.Faktura
 
             if (dokumenat == "FAK")
             {
-
                 if (broj_dokumenta == null) { return; }
                 imeTablica[0] = samoIspis ? "ispis_fakture" : "fakture";
                 imeTablica[1] = samoIspis ? "ispis_faktura_stavke" : "faktura_stavke";
@@ -158,7 +157,6 @@ namespace PCPOS.Report.Faktura
             }
             else if (dokumenat == "RAC")
             {
-
                 if (broj_dokumenta == null) { return; }
 
                 imeTablica[0] = samoIspis ? "ispis_racuni" : "racuni";
@@ -179,7 +177,6 @@ namespace PCPOS.Report.Faktura
                 imeTablica[1] = samoIspis ? "ispis_faktura_stavke" : "ponude_stavke";
                 imeBrojRacuna = samoIspis ? "broj_fakture" : "broj_ponude";
                 imeGodinaRacuna = samoIspis ? "godina_fakture" : "godina_ponude";
-
 
                 ReportParameter p100 = new ReportParameter("parametarBarkod", "a");
                 this.reportViewer2.LocalReport.EnableExternalImages = true;

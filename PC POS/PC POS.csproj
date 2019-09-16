@@ -2810,7 +2810,9 @@
     <EmbeddedResource Include="Report\Kalkulacija2016\frmKalkulacija2016.resx">
       <DependentUpon>frmKalkulacija2016.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\Kalkulacija2016\Kalkulacija.rdlc" />
+    <EmbeddedResource Include="Report\Kalkulacija2016\Kalkulacija.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\FaktureNovo\repFakturaNovo.resx">
       <DependentUpon>repFakturaNovo.cs</DependentUpon>
     </EmbeddedResource>
@@ -4094,12 +4096,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PC POS Update\PC POS Update.csproj">
-      <Project>{2B6279AA-533B-42C6-A4D3-2943C6AE5736}</Project>
-      <Name>PC POS Update</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

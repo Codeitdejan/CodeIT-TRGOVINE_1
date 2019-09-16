@@ -18,7 +18,6 @@ F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Microsoft.ReportViewer.WebForm
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Microsoft.ReportViewer.WinForms.DLL
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Microsoft.SqlServer.Types.dll
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Newtonsoft.Json.dll
-F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\PC POS Update.exe
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\zxing.dll
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\zxing.presentation.dll
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
@@ -35,7 +34,6 @@ F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Microsoft.VisualStudio.VSHelp8
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Microsoft.mshtml.dll
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\stdole.dll
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Microsoft.MSXML.dll
-F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\PC POS Update.pdb
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Newtonsoft.Json.xml
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\Npgsql.pdb
 F:\work\CodeIT\CodeiT - Trgovine\PC POS\bin\Debug\zxing.pdb

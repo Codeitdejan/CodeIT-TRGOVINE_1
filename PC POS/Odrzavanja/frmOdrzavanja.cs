@@ -335,7 +335,7 @@ namespace PCPOS.Odrzavanja
                 {
                     for (int i = 0; i < brojevi_fak.Count; i++)
                     {
-                        Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
+                        Report.Faktura3.repFaktura3 rfak = new Report.Faktura3.repFaktura3();
                         rfak.spremi = true;
                         rfak.print = true;
                         rfak.dokumenat = "FAK";
@@ -351,7 +351,7 @@ namespace PCPOS.Odrzavanja
                 {
                     for (int i = 0; i < brojevi_fak.Count; i++)
                     {
-                        Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
+                        Report.Faktura3.repFaktura3 rfak = new Report.Faktura3.repFaktura3();
                         rfak.spremi = true;
                         rfak.dokumenat = "FAK";
                         rfak.racunajTecaj = false;
@@ -646,7 +646,7 @@ namespace PCPOS.Odrzavanja
                 {
                     for (int i = 0; i < brojevi_fak.Count; i++)
                     {
-                        Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
+                        Report.Faktura3.repFaktura3 rfak = new Report.Faktura3.repFaktura3();
                         rfak.godisnje = true;
                         rfak.print = true;
                         rfak.dokumenat = "FAK";
@@ -662,7 +662,7 @@ namespace PCPOS.Odrzavanja
                 {
                     for (int i = 0; i < brojevi_fak.Count; i++)
                     {
-                        Report.Faktura.repFaktura2 rfak = new Report.Faktura.repFaktura2();
+                        Report.Faktura3.repFaktura3 rfak = new Report.Faktura3.repFaktura3();
                         rfak.godisnje = true;
                         rfak.dokumenat = "FAK";
                         rfak.racunajTecaj = false;

@@ -395,11 +395,7 @@ WHERE " + filter + " ";
                 ks.porez AS pdv,
                 pn.iznos as povratna_naknada
                 FROM kalkulacija_stavke ks
-<<<<<<< HEAD
-                LEFT JOIN roba r ON ks.sifra = r.sifra
-=======
-                LEFT JOIN roba r ON cast(ks.id_stavka as text) = r.sifra
->>>>>>> f18c8c64dcc2bbfdfef00479105b9b30c08bac47
+                LEFT JOIN roba r ON cast(ks.sifra as text) = r.sifra
                 LEFT JOIN povratna_naknada pn on ks.sifra = pn.sifra
                 WHERE {0}
                 ORDER BY CAST(id_stavka AS INT) ASC;", filter1);
