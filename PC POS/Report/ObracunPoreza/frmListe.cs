@@ -164,8 +164,11 @@ namespace PCPOS.Report.ObracunPoreza
                 filter = filter.Remove(filter.Length - 4, 4);
             }
 
+
+
             string sql_liste = "SELECT " +
-                " racun_stavke.porez As porezroba," +
+                " racun_stavke.porez ," +
+                " CAST(racuni.broj_racuna AS int) As string3 ," +
                 " racun_stavke.rabat As rabat ," +
                 " racun_stavke.kolicina ," +
                 " racun_stavke.vpc ," +
@@ -189,13 +192,8 @@ namespace PCPOS.Report.ObracunPoreza
                 this.Close();
             }
 
-            //string sqltxt1 = " SELECT MAX(CAST(broj_racuna AS INTEGER)) AS string3," +
-            //" MIN(CAST(broj_racuna AS INTEGER)) As string4 " +
-            //" FROM racuni";
 
-            //classSQL.NpgAdatpter(sqltxt1).Fill(dSRlisteTekst, "DTlisteTekst");
 
-            //MessageBox.Show(dSRlisteTekst.Tables[0].Rows.Count.ToString());
 
             DataTable DTstavke;
             DTstavke = classSQL.select(sql_liste, "racun_stavke").Tables[0];
@@ -218,91 +216,52 @@ namespace PCPOS.Report.ObracunPoreza
             decimal pdv_osnovica1 = 0;
             decimal pdv_iznos1 = 0;
             decimal povratna_naknada = 0;
+            decimal povratna_naknadauk = 0;
             decimal povratna_naknada1 = 0;
             decimal porez_na_potrosnju = 0;
             decimal sveukupno1 = 0;
             decimal sveukupno2 = 0;
             decimal porez_na_potrosnju1 = 0;
             decimal rabat_iznos1 = 0;
+            decimal ukupnoPdv1 = 0;
 
-            for (int y = 0; y < DTstavke.Rows.Count; y++)
+            decimal kolicina = 0;
+            decimal mpc = 0;
+            decimal mpcc = 0;
+            decimal pdv = 0;
+            decimal rabat = 0;
+            decimal ukupnoRabat = 0;
+            decimal ukupnoPdv = 0;
+            bool zadnji = false;
+
+            int brojRedova = DTstavke.Rows.Count;
+            int brojac = 0;
+
+            foreach (DataRow row in DTstavke.Rows)
             {
-                //MessageBox.Show(DTstavke.Rows[y]["povratna_naknada"].ToString());
-                decimal pdv = Convert.ToDecimal(DTstavke.Rows[y]["porezroba"].ToString());
-                decimal vpc = Convert.ToDecimal(DTstavke.Rows[y]["vpc"].ToString());
-                decimal rabat = Convert.ToDecimal(DTstavke.Rows[y]["rabat"].ToString());
-                decimal kol = Convert.ToDecimal(DTstavke.Rows[y]["kolicina"].ToString());
-                decimal uku = Convert.ToDecimal(DTstavke.Rows[y]["ukupno"].ToString());
-                decimal mpc = Convert.ToDecimal(DTstavke.Rows[y]["mpc"].ToString());
-
-                if (DTstavke.Rows[y]["povratna_naknada"].ToString() != "")
+                brojac++;
+                if (brojRedova == brojac)
                 {
-                    povratna_naknada = Convert.ToDecimal(DTstavke.Rows[y]["povratna_naknada"].ToString());
+                    zadnji = true;
+                }
+
+                kolicina = Convert.ToDecimal(row["kolicina"].ToString());
+                mpcc = Convert.ToDecimal(row["mpc"].ToString());
+                pdv = Convert.ToDecimal(row["porez"].ToString());
+                rabat = Convert.ToDecimal(row["rabat"].ToString());
+
+                if (row["povratna_naknada"].ToString() != "")
+                {
+                    povratna_naknada = Convert.ToDecimal(row["povratna_naknada"].ToString());
                 }
                 else
                 {
                     povratna_naknada = 0;
                 }
 
-                decimal pnp = Convert.ToDecimal(DTstavke.Rows[y]["porez_potrosnja"].ToString());
+                mpc = Convert.ToDecimal(row["mpc"].ToString()) - (povratna_naknada == 0 ? povratna_naknada : (kolicina == 0 ? 0 : povratna_naknada / kolicina));
 
-                if (DTstavke.Rows[y]["oduzmi"].ToString() == "DA")
-                {
-                    if (DTstavke.Rows[y]["povratna_naknada"].ToString() != "")
-                    {
-                        povratna_naknada = Convert.ToDecimal(DTstavke.Rows[y]["povratna_naknada"].ToString());
-                    }
-                    else
-                    {
-                        povratna_naknada = 0;
-                    }
-                    sveukupno1 = mpc * kol;
-                    Stopa = (pdv * 100) / (100 + pdv);
-                    rabat_iznos = (mpc * (rabat / 100)) * kol;
-                    pdv_rabat = (rabat_iznos * (Stopa / 100));
-                    osnovica_ukupno = (mpc - (mpc * (rabat / 100))) * kol;
-                    porez_na_potrosnju = pnp;
-                    pdv_iznos = osnovica_ukupno * (Stopa / 100);
-                    iznos_bez_poreza = osnovica_ukupno - pdv_iznos;
-
-                    StopePDVa(pdv, Stopa, sveukupno1, povratna_naknada, rabat_iznos, pdv_rabat, osnovica_ukupno, pdv_iznos, porez_na_potrosnju, iznos_bez_poreza);
-                }
-                else
-                {
-                    if (DTstavke.Rows[y]["povratna_naknada"].ToString() != "")
-                    {
-                        povratna_naknada1 = Convert.ToDecimal(DTstavke.Rows[y]["povratna_naknada"].ToString());
-                    }
-                    else
-                    {
-                        povratna_naknada1 = 0;
-                    }
-
-                    sveukupno2 = mpc * kol;
-                    Stopa1 = (pdv * 100) / (100 + pdv);
-                    rabat_iznos1 = (mpc * (rabat / 100)) * kol;
-                    pdv_rabat1 = (rabat_iznos1 * (Stopa / 100));
-                    osnovica_ukupno1 = ((mpc - (mpc * (rabat / 100))) * kol);
-                    porez_na_potrosnju1 = pnp;
-                    pdv_iznos1 = osnovica_ukupno1 * (Stopa1 / 100);
-                    iznos_bez_poreza1 = osnovica_ukupno1 - pdv_iznos1;
-
-                    //StopePDVa(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-                    StopePDVa1(pdv, Stopa1, sveukupno2, povratna_naknada1, rabat_iznos1, pdv_rabat, osnovica_ukupno1, pdv_iznos1, porez_na_potrosnju1, iznos_bez_poreza1);
-                }
-            }
-        }
-
-        private Dataset.DSobracunpor.DTobr1DataTable DTpdv = new Dataset.DSobracunpor.DTobr1DataTable();
-
-        private void StopePDVa(decimal pdv, decimal stopa, decimal sveukupno, decimal povratna_naknada, decimal rabat, decimal pdv_rabat, decimal mpc, decimal pdv_iznos, decimal pnp, decimal iznosBezPoreza)
-        {
-            DataRow[] dataROW = dSobracunpor.Tables[0].Select("porezroba = '" + pdv.ToString() + "'");
-
-            if (dataROW.Count() == 0)
-            {
-                RowPdv = dSobracunpor.Tables[0].NewRow();
+                /*
                 RowPdv["porezroba"] = pdv.ToString();
                 RowPdv["stopa"] = stopa.ToString("#0.00");
                 RowPdv["sveukup"] = sveukupno.ToString("#0.00");
@@ -311,11 +270,98 @@ namespace PCPOS.Report.ObracunPoreza
                 RowPdv["pdvrabat"] = pdv_rabat.ToString("#0.00");
                 RowPdv["osnovica"] = mpc.ToString("#0.00");
                 RowPdv["pdv"] = pdv_iznos.ToString("#0.00");
-                RowPdv["pp"] = pnp.ToString("#0.00");
-                RowPdv["iznbezpor"] = iznosBezPoreza.ToString("#0.00");
-                dSobracunpor.Tables[0].Rows.Add(RowPdv);
+                RowPdv["iznbezpor"] = iznosBezPoreza.ToString("#0.00");*/
+
+                if (row["oduzmi"].ToString() == "DA")
+                {
+                    decimal rabatIznos = Math.Round((mpc * (rabat / 100)), 6, MidpointRounding.AwayFromZero);
+                    decimal mpc_s_rab = Math.Round(mpc - rabatIznos, 6, MidpointRounding.AwayFromZero);
+                    decimal mpcSRabUkupno = Math.Round((mpc_s_rab * kolicina), 6, MidpointRounding.AwayFromZero);
+                    decimal rabatt = mpcc * (rabat / 100) * kolicina;
+
+                    ukupnoRabat += rabatt;
+
+                    decimal PreracunataStopaPDV = Convert.ToDecimal((100 * pdv) / (100 + pdv));
+                    decimal pdvIznos = Math.Round(((mpc_s_rab * (Math.Round(PreracunataStopaPDV, 6, MidpointRounding.AwayFromZero) / 100)) * kolicina), 6, MidpointRounding.AwayFromZero);
+                    ukupnoPdv = pdvIznos + ukupnoPdv;
+                    decimal osnovicauk = (mpcSRabUkupno - ((pdvIznos)));
+
+                    osnovica_ukupno = osnovicauk + osnovica_ukupno;
+                    povratna_naknadauk += povratna_naknada;
+
+                    pdv_rabat = rabatt * (PreracunataStopaPDV / 100);
+
+                    StopePDVa(pdv, PreracunataStopaPDV, (osnovicauk+ pdvIznos+ povratna_naknada), povratna_naknada, rabatt, pdv_rabat, pdv_rabat+ osnovicauk, pdvIznos, porez_na_potrosnju, osnovicauk, zadnji);
+                }
+                else
+                {
+                    decimal rabatIznos1 = Math.Round((mpc * (rabat / 100)), 6, MidpointRounding.AwayFromZero);
+                    decimal mpc_s_rab1 = Math.Round(mpc - rabatIznos1, 6, MidpointRounding.AwayFromZero);
+                    decimal mpcSRabUkupno1 = Math.Round((mpc_s_rab1 * kolicina), 6, MidpointRounding.AwayFromZero);
+                    decimal rabatt1 = mpcc * (rabat / 100) * kolicina;
+
+                    ukupnoRabat += rabatt1;
+
+                    decimal PreracunataStopaPDV = Convert.ToDecimal((100 * pdv) / (100 + pdv));
+                    decimal pdvIznos1 = Math.Round(((mpc_s_rab1 * (Math.Round(PreracunataStopaPDV, 6, MidpointRounding.AwayFromZero) / 100)) * kolicina), 6, MidpointRounding.AwayFromZero);
+                    ukupnoPdv1 = pdvIznos1 + ukupnoPdv;
+                    decimal osnovicauk1 = (mpcSRabUkupno1 - ((pdvIznos1)));
+
+                    osnovica_ukupno = osnovicauk1 + osnovica_ukupno;
+
+                    pdv_rabat = rabatt1 * (PreracunataStopaPDV / 100);
+
+                    StopePDVa1(pdv, PreracunataStopaPDV, (osnovicauk1+ pdvIznos1+ povratna_naknada), povratna_naknada, rabatt1, pdv_rabat, pdv_rabat+osnovicauk1, pdv_iznos1, porez_na_potrosnju1, osnovicauk1, zadnji);
+                }
             }
-            else
+
+            StopePDVa(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+            StopePDVa(5, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+            StopePDVa(13, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+            StopePDVa(25, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+            StopePDVa(10, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+
+            StopePDVa1(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+            StopePDVa1(5, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+            StopePDVa1(13, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+            StopePDVa1(25, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+            StopePDVa1(10, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+
+        }
+
+        private Dataset.DSobracunpor.DTobr1DataTable DTpdv = new Dataset.DSobracunpor.DTobr1DataTable();
+
+        private void StopePDVa(decimal pdv, decimal stopa, decimal sveukupno, decimal povratna_naknada, decimal rabat, decimal pdv_rabat, decimal mpc, decimal pdv_iznos, decimal pnp, decimal iznosBezPoreza, bool zadnji)
+        {
+            DataRow[] dataROW = dSobracunpor.Tables[0].Select("porezroba = '" + pdv.ToString() + "'");
+            if (mpc != 0 || sveukupno != 0)
+            {
+                if (dataROW.Count() == 0)
+                {
+                    RowPdv = dSobracunpor.Tables[0].NewRow();
+                    RowPdv["porezroba"] = pdv.ToString();
+                    RowPdv["stopa"] = stopa.ToString("#0.000000");
+                    RowPdv["sveukup"] = sveukupno.ToString("#0.000000");
+                    RowPdv["povrnakn"] = povratna_naknada.ToString("#0.000000");
+                    RowPdv["rabat"] = rabat.ToString("#0.000000");
+                    RowPdv["pdvrabat"] = pdv_rabat.ToString("#0.000000");
+                    RowPdv["osnovica"] = mpc.ToString("#0.000000");
+                    RowPdv["pdv"] = pdv_iznos.ToString("#0.000000");
+                    RowPdv["iznbezpor"] = iznosBezPoreza.ToString("#0.000000");
+                    dSobracunpor.Tables[0].Rows.Add(RowPdv);
+                }
+                else
+                {
+                    dataROW[0]["sveukup"] = (Convert.ToDecimal(dataROW[0]["sveukup"]) + sveukupno).ToString("#0.000000");
+                    dataROW[0]["povrnakn"] = (Convert.ToDecimal(dataROW[0]["povrnakn"]) + povratna_naknada).ToString("#0.000000");
+                    dataROW[0]["osnovica"] = (Convert.ToDecimal(dataROW[0]["osnovica"]) + mpc).ToString("#0.000000");
+                    dataROW[0]["rabat"] = (Convert.ToDecimal(dataROW[0]["rabat"]) + rabat).ToString("#0.000000");
+                    dataROW[0]["pdvrabat"] = (Convert.ToDecimal(dataROW[0]["pdvrabat"]) + pdv_rabat).ToString("#0.000000");
+                    dataROW[0]["pdv"] = (Convert.ToDecimal(dataROW[0]["pdv"]) + pdv_iznos).ToString("#0.000000");
+                    dataROW[0]["iznbezpor"] = (Convert.ToDecimal(dataROW[0]["iznbezpor"]) + iznosBezPoreza).ToString("#0.000000");
+                }
+            }
+            else if(dataROW.Count() != 0)
             {
                 dataROW[0]["sveukup"] = (Convert.ToDecimal(dataROW[0]["sveukup"]) + sveukupno).ToString("#0.00");
                 dataROW[0]["povrnakn"] = (Convert.ToDecimal(dataROW[0]["povrnakn"]) + povratna_naknada).ToString("#0.00");
@@ -323,33 +369,43 @@ namespace PCPOS.Report.ObracunPoreza
                 dataROW[0]["rabat"] = (Convert.ToDecimal(dataROW[0]["rabat"]) + rabat).ToString("#0.00");
                 dataROW[0]["pdvrabat"] = (Convert.ToDecimal(dataROW[0]["pdvrabat"]) + pdv_rabat).ToString("#0.00");
                 dataROW[0]["pdv"] = (Convert.ToDecimal(dataROW[0]["pdv"]) + pdv_iznos).ToString("#0.00");
-                dataROW[0]["pp"] = (Convert.ToDecimal(dataROW[0]["pp"]) + pnp).ToString("#0.00");
                 dataROW[0]["iznbezpor"] = (Convert.ToDecimal(dataROW[0]["iznbezpor"]) + iznosBezPoreza).ToString("#0.00");
             }
         }
 
         private Dataset.DSobracunpor1.DTobr2DataTable DTpdv1 = new Dataset.DSobracunpor1.DTobr2DataTable();
 
-        private void StopePDVa1(decimal pdv, decimal stopa, decimal sveukupno, decimal povratna_naknada, decimal rabat, decimal pdv_rabat, decimal mpc, decimal pdv_iznos, decimal pnp, decimal iznosBezPoreza)
+        private void StopePDVa1(decimal pdv, decimal stopa, decimal sveukupno, decimal povratna_naknada, decimal rabat, decimal pdv_rabat, decimal mpc, decimal pdv_iznos, decimal pnp, decimal iznosBezPoreza, bool a)
         {
             DataRow[] dataROW = dSobracunpor1.Tables[0].Select("porez = '" + pdv.ToString() + "'");
-
-            if (dataROW.Count() == 0)
+            if (mpc != 0 || sveukupno != 0)
             {
-                RowPdv = dSobracunpor1.Tables[0].NewRow();
-                RowPdv["porez"] = pdv.ToString();
-                RowPdv["stopa"] = stopa.ToString("#0.00");
-                RowPdv["sveukupno"] = sveukupno.ToString("#0.00");
-                RowPdv["povrnak"] = povratna_naknada.ToString("#0.00");
-                RowPdv["rabat"] = rabat.ToString("#0.00");
-                RowPdv["pdvrabata"] = pdv_rabat.ToString("#0.00");
-                RowPdv["osnovica"] = mpc.ToString("#0.00");
-                RowPdv["pdv"] = pdv_iznos.ToString("#0.00");
-                RowPdv["pp"] = pnp.ToString("#0.00");
-                RowPdv["iznbezporeza"] = iznosBezPoreza.ToString("#0.00");
-                dSobracunpor1.Tables[0].Rows.Add(RowPdv);
+                if (dataROW.Count() == 0)
+                {
+                    RowPdv = dSobracunpor1.Tables[0].NewRow();
+                    RowPdv["porez"] = pdv.ToString();
+                    RowPdv["stopa"] = stopa.ToString("#0.000000");
+                    RowPdv["sveukupno"] = sveukupno.ToString("#0.000000");
+                    RowPdv["povrnak"] = povratna_naknada.ToString("#0.000000");
+                    RowPdv["rabat"] = rabat.ToString("#0.000000");
+                    RowPdv["pdvrabata"] = pdv_rabat.ToString("#0.000000");
+                    RowPdv["osnovica"] = mpc.ToString("#0.000000");
+                    RowPdv["pdv"] = pdv_iznos.ToString("#0.000000");
+                    RowPdv["iznbezporeza"] = iznosBezPoreza.ToString("#0.000000");
+                    dSobracunpor1.Tables[0].Rows.Add(RowPdv);
+                }
+                else
+                {
+                    dataROW[0]["sveukupno"] = (Convert.ToDecimal(dataROW[0]["sveukupno"]) + sveukupno).ToString("#0.000000");
+                    dataROW[0]["povrnak"] = (Convert.ToDecimal(dataROW[0]["povrnak"]) + povratna_naknada).ToString("#0.000000");
+                    dataROW[0]["osnovica"] = (Convert.ToDecimal(dataROW[0]["osnovica"]) + mpc).ToString("#0.000000");
+                    dataROW[0]["rabat"] = (Convert.ToDecimal(dataROW[0]["rabat"]) + rabat).ToString("#0.000000");
+                    dataROW[0]["pdvrabata"] = (Convert.ToDecimal(dataROW[0]["pdvrabata"]) + pdv_rabat).ToString("#0.000000");
+                    dataROW[0]["pdv"] = (Convert.ToDecimal(dataROW[0]["pdv"]) + pdv_iznos).ToString("#0.000000");
+                    dataROW[0]["iznbezporeza"] = (Convert.ToDecimal(dataROW[0]["iznbezporeza"]) + iznosBezPoreza).ToString("#0.000000");
+                }
             }
-            else
+            else if (dataROW.Count() != 0)
             {
                 dataROW[0]["sveukupno"] = (Convert.ToDecimal(dataROW[0]["sveukupno"]) + sveukupno).ToString("#0.00");
                 dataROW[0]["povrnak"] = (Convert.ToDecimal(dataROW[0]["povrnak"]) + povratna_naknada).ToString("#0.00");
@@ -357,7 +413,6 @@ namespace PCPOS.Report.ObracunPoreza
                 dataROW[0]["rabat"] = (Convert.ToDecimal(dataROW[0]["rabat"]) + rabat).ToString("#0.00");
                 dataROW[0]["pdvrabata"] = (Convert.ToDecimal(dataROW[0]["pdvrabata"]) + pdv_rabat).ToString("#0.00");
                 dataROW[0]["pdv"] = (Convert.ToDecimal(dataROW[0]["pdv"]) + pdv_iznos).ToString("#0.00");
-                dataROW[0]["pp"] = (Convert.ToDecimal(dataROW[0]["pp"]) + pnp).ToString("#0.00");
                 dataROW[0]["iznbezporeza"] = (Convert.ToDecimal(dataROW[0]["iznbezporeza"]) + iznosBezPoreza).ToString("#0.00");
             }
         }
@@ -382,7 +437,6 @@ namespace PCPOS.Report.ObracunPoreza
                     RowPdv["pdvrabata"] = row["pdvrabat"].ToString();
                     RowPdv["osnovica"] = row["osnovica"].ToString();
                     RowPdv["pdv"] = row["pdv"].ToString();
-                    RowPdv["pp"] = row["pp"].ToString();
                     RowPdv["iznbezpor"] = row["iznbezpor"].ToString();
                     dSobracunpor2.Tables[0].Rows.Add(RowPdv);
                 }
@@ -395,7 +449,6 @@ namespace PCPOS.Report.ObracunPoreza
                     RowPdv["pdvrabata"] = Convert.ToDecimal(Convert.ToDecimal(row["pdvrabat"].ToString()) + Convert.ToDecimal(dataROW[0]["pdvrabata"].ToString())).ToString("#0.00");
                     RowPdv["osnovica"] = Convert.ToDecimal(Convert.ToDecimal(row["osnovica"].ToString()) + Convert.ToDecimal(dataROW[0]["osnovica"].ToString())).ToString("#0.00");
                     RowPdv["pdv"] = Convert.ToDecimal(Convert.ToDecimal(row["pdv"].ToString()) + Convert.ToDecimal(dataROW[0]["pdv"].ToString())).ToString("#0.00");
-                    RowPdv["pp"] = Convert.ToDecimal(Convert.ToDecimal(row["pp"].ToString()) + Convert.ToDecimal(dataROW[0]["pp"].ToString())).ToString("#0.00");
                     RowPdv["iznbezpor"] = Convert.ToDecimal(Convert.ToDecimal(row["iznbezpor"].ToString()) + Convert.ToDecimal(dataROW[0]["iznbezporeza"].ToString())).ToString("#0.00");
                     dSobracunpor2.Tables[0].Rows.Add(RowPdv);
                 }
