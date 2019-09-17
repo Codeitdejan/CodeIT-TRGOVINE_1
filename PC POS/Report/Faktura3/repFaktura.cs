@@ -1,10 +1,12 @@
 ﻿using Microsoft.Reporting.WinForms;
 using System;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Windows.Forms;
 using ZXing;
 using ZXing.Common;
@@ -28,7 +30,10 @@ namespace PCPOS.Report.Faktura3
         public string naplatni { get; set; }
         public bool otpr_id { get; set; }
         public bool ponudaUNbc { get; set; }
-
+        public bool spremi = false;
+        public bool print = false;
+        public bool godisnje = false;
+        public string nazivDokumenta = "0";
         public Dataset.DSFaktura ispisdSFaktura;
         public Dataset.DSRfakturaStavke ispisdSRfakturaStavke;
         public Dataset.DSRpodaciTvrtke ispisdSRpodaciTvrtke;
@@ -102,7 +107,7 @@ namespace PCPOS.Report.Faktura3
             string drzava = "Hrvatska";
             string kn = racunajTecaj ? " " : " kn"; ;
 
-            p10 = new ReportParameter("sakrij_jedinicnu_cijenu", "0");
+            //p10 = new ReportParameter("sakrij_jedinicnu_cijenu", "0");
 
             string[] imeTablica = new string[2];
             string imeBrojRacuna, imeGodinaRacuna;
@@ -113,6 +118,7 @@ namespace PCPOS.Report.Faktura3
                 imeTablica[0] = samoIspis ? "ispis_fakture" : "fakture";
                 imeTablica[1] = samoIspis ? "ispis_faktura_stavke" : "faktura_stavke";
                 FillFaktura(broj_dokumenta, imeTablica);
+                nazivDokumenta = dSFaktura.Tables[0].Rows[0]["kupac_tvrtka"].ToString();
             }
             else if (dokumenat == "RAC")
             {
@@ -234,7 +240,7 @@ namespace PCPOS.Report.Faktura3
             ReportParameter p6 = new ReportParameter("sustav_pdv", tekst);
             ReportParameter p8 = new ReportParameter("iznos_valuta_kn", "0");
             ReportParameter p9 = new ReportParameter("tecaj_opis", Uvaluti);
-            //ReportParameter p10 = new ReportParameter("sakrij_jedinicnu_cijenu", "0");
+            ReportParameter p10 = new ReportParameter("sakrij_jedinicnu_cijenu", "0");
             ReportParameter p11 = new ReportParameter("dokumenat", dokumenat);
             ReportParameter p18 = new ReportParameter("avio_registracija", avio_registracija);
             ReportParameter p19 = new ReportParameter("avio_tip", avio_tip_zrakoplova);
@@ -244,6 +250,34 @@ namespace PCPOS.Report.Faktura3
             this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p1, p2, p3, p4, p5, p6, p8, p9, p10, p11, p18, p19, p20, p21, p22, p23 });
 
             this.reportViewer1.RefreshReport();
+            if (spremi && print)
+            {
+                SpremiPdf("CodeITFaktura - " + nazivDokumenta, reportViewer1);
+                printPdf("CodeITFaktura - " + nazivDokumenta);
+                PosaljiEmail("CodeITFaktura - " + nazivDokumenta);
+                this.Close();
+            }
+            else if (spremi)
+            {
+                SpremiPdf("CodeITFaktura - " + nazivDokumenta, reportViewer1);
+                PosaljiEmail("CodeITFaktura - " + nazivDokumenta);
+                this.Close();
+            }
+            
+            else if (godisnje && print)
+            {
+                SpremiGodisnjiPdf("CodeITFaktura - " + nazivDokumenta, reportViewer1);
+                printGodisnjiPdf("CodeITFaktura - " + nazivDokumenta);
+                PosaljiGodisnjiEmail("CodeITFaktura - " + nazivDokumenta);
+                this.Close();
+            }
+            else if (godisnje)
+            {
+                SpremiGodisnjiPdf("CodeITFaktura - " + nazivDokumenta, reportViewer1);
+                PosaljiGodisnjiEmail("CodeITFaktura - " + nazivDokumenta);
+                this.Close();
+            }
+            
         }
 
         private string AkoJeStranaValuta(string sql, string valuta)
@@ -498,10 +532,12 @@ imeTablica[0], broj, poslovnica, naplatni);
             if (classSQL.remoteConnectionString == "")
             {
                 classSQL.CeAdatpter(sql).Fill(dSFaktura, "DTRfaktura");
+                nazivDokumenta = dSFaktura.Tables[0].Rows[0]["kupac_tvrtka"].ToString();
             }
             else
             {
                 classSQL.NpgAdatpter(sql.Replace("nvarchar", "varchar")).Fill(dSFaktura, "DTRfaktura");
+                nazivDokumenta = dSFaktura.Tables[0].Rows[0]["kupac_tvrtka"].ToString();
             }
 
             //mora se postaviti na "" i 1 jer inače javlja error na reportu
@@ -2070,5 +2106,164 @@ where {0}.broj_fakture = '{1}' AND {0}.id_ducan = '{2}' AND {0}.id_kasa = '{3}';
             else if (dokumenat == "FAK")
                 OstaleFunkcije.PovecajBrojIspisaRacuna(broj_dokumenta, poslovnica, naplatni, dokumenat);
         }
+
+        #region GeneriranjeFakturaKorisnicima
+
+        private static void StvoriDirektorijAkoNePostoji()
+        {
+            string Path = AppDomain.CurrentDomain.BaseDirectory + "Fakture_korisnicima";
+            if (!Directory.Exists(Path))
+                Directory.CreateDirectory(Path);
+        }
+
+        public static void SpremiPdf(string ime, ReportViewer reportViewer)
+        {
+            StvoriDirektorijAkoNePostoji();
+            Warning[] warnings;
+            string[] streamids;
+            string mimeType, encoding, extension;
+            byte[] bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
+
+            string pdfPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Fakture_korisnicima\" + ime + "." + extension);
+            System.IO.FileStream pdfFile = new System.IO.FileStream(pdfPath, System.IO.FileMode.Create);
+            pdfFile.Write(bytes, 0, bytes.Length);
+            pdfFile.Close();
+        }
+
+        private void printPdf(string PdfName)
+        {
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.Verb = "print";
+            info.FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Fakture_korisnicima\" + PdfName + "." + "pdf");
+            info.CreateNoWindow = true;
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+
+            Process p = new Process();
+            p.StartInfo = info;
+            p.Start();
+            System.Threading.Thread.Sleep(5000);
+            p.WaitForInputIdle();
+            if (false == p.CloseMainWindow())
+                p.Kill();
+        }
+
+        private void PosaljiEmail(string PdfName)
+        {
+            /*
+            DataTable DTpodaci = classSQL.select_settings("SELECT * FROM podaci_tvrtka WHERE id='1'", "podaci_tvrtka").Tables[0];
+            string imetvrtke = DTpodaci.Rows[0]["ime_tvrtke"].ToString();
+            */
+            string email = dSFaktura.Tables[0].Rows[0]["email"].ToString(); //DTpodaci.Rows[0]["email_knjigovodstvo"].ToString();
+            //string email = "dejan@code-it.hr";
+            try
+            {
+                //Smtp
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com"); // SmtpServerName = smtp.gmail.com
+                SmtpServer.Port = 587;
+                SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("dokumenti.codeit@gmail.com", "Dejan102");
+                SmtpServer.EnableSsl = true;
+
+                //E-Mail
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("dokumenti.codeit@gmail.com");
+                //mail.From = new MailAddress("prometi@code-it.hr"); - Ne može preko toga.
+                mail.To.Add(email);
+                mail.Subject = "Faktura za " + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
+                mail.Body = $@"Poštovani! U prilogu se nalazi faktura za " + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
+                StaviPDFoveUEmail(mail, PdfName);
+                //Send E-Mail
+                SmtpServer.Send(mail);
+                mail.Attachments.Dispose();
+                //MessageBox.Show("Odabrani dokumenti poslani su knjigovodstvu.", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška u slanju E-Maila" + ex.ToString());
+            }
+        }
+
+        private void StaviPDFoveUEmail(MailMessage mail, string PdfName)
+        {
+            mail.Attachments.Add(new Attachment(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Fakture_korisnicima\" + PdfName + "." + "pdf")));
+        }
+
+        private static void StvoriDirektorijZaGodisnjeAkoNePostoji()
+        {
+            string Path = AppDomain.CurrentDomain.BaseDirectory + "Fakture_korisnicima_godisnje_pretplate";
+            if (!Directory.Exists(Path))
+                Directory.CreateDirectory(Path);
+        }
+
+        public static void SpremiGodisnjiPdf(string ime, ReportViewer reportViewer)
+        {
+            StvoriDirektorijZaGodisnjeAkoNePostoji();
+            Warning[] warnings;
+            string[] streamids;
+            string mimeType, encoding, extension;
+            byte[] bytes = reportViewer.LocalReport.Render("PDF", null, out mimeType, out encoding, out extension, out streamids, out warnings);
+
+            string pdfPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Fakture_korisnicima_godisnje_pretplate\" + ime + "." + extension);
+            System.IO.FileStream pdfFile = new System.IO.FileStream(pdfPath, System.IO.FileMode.Create);
+            pdfFile.Write(bytes, 0, bytes.Length);
+            pdfFile.Close();
+        }
+
+
+        private void printGodisnjiPdf(string PdfName)
+        {
+            ProcessStartInfo info = new ProcessStartInfo();
+            info.Verb = "print";
+            info.FileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Fakture_korisnicima_godisnje_pretplate\" + PdfName + "." + "pdf");
+            info.CreateNoWindow = true;
+            info.WindowStyle = ProcessWindowStyle.Hidden;
+
+            Process p = new Process();
+            p.StartInfo = info;
+            p.Start();
+            System.Threading.Thread.Sleep(5000);
+            p.WaitForInputIdle();
+            if (false == p.CloseMainWindow())
+                p.Kill();
+        }
+
+        private void PosaljiGodisnjiEmail(string PdfName)
+        {
+            //DataTable DTpodaci = classSQL.select_settings("SELECT * FROM podaci_tvrtka WHERE id='1'", "podaci_tvrtka").Tables[0];
+            //string imetvrtke = DTpodaci.Rows[0]["ime_tvrtke"].ToString();
+            string email = dSFaktura.Tables[0].Rows[0]["email"].ToString();//DTpodaci.Rows[0]["email_knjigovodstvo"].ToString();
+
+            try
+            {
+                //Smtp
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com"); // SmtpServerName = smtp.gmail.com
+                SmtpServer.Port = 587;
+                SmtpServer.DeliveryMethod = SmtpDeliveryMethod.Network;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("dokumenti.codeit@gmail.com", "Dejan102");
+                SmtpServer.EnableSsl = true;
+
+                //E-Mail
+                MailMessage mail = new MailMessage();
+                mail.From = new MailAddress("dokumenti.codeit@gmail.com");
+                //mail.From = new MailAddress("prometi@code-it.hr"); - Ne može preko toga.
+                mail.To.Add(email);
+                mail.Subject = "Faktura za " + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
+                mail.Body = $@"Poštovani! U prilogu se nalazi faktura za " + DateTime.Now.Month.ToString() + "/" + DateTime.Now.Year.ToString();
+                StaviGodisnjePDFoveUEmail(mail, PdfName);
+                //Send E-Mail
+                SmtpServer.Send(mail);
+                mail.Attachments.Dispose();
+                //MessageBox.Show("Odabrani dokumenti poslani su knjigovodstvu.", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška u slanju E-Maila" + ex.ToString());
+            }
+        }
+        private void StaviGodisnjePDFoveUEmail(MailMessage mail, string PdfName)
+        {
+            mail.Attachments.Add(new Attachment(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $@"Fakture_korisnicima_godisnje_pretplate\" + PdfName + "." + "pdf")));
+        }
+        #endregion
     }
 }
